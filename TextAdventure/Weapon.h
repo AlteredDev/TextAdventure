@@ -9,6 +9,12 @@ private:
 	float defense;
 
 public:
+	void SetName();
+	void SetDamage();
+	void SetDefense();
+
 	string GetName();
+	float GetDamage();
+	float GetDefense();
 };
 
