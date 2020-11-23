@@ -1,9 +1,14 @@
 #pragma once
-#include "Character.h"
+#include <iostream>
+#include <string>
+
+using namespace std;
 
 class Spell
 {
-protected:
+private:
+	//int id;
+	//Rudhy tu fera pour me montrer
 	string nameSpell;
 	float manaCost;
 	//float damage;
@@ -12,7 +17,7 @@ public:
 	Spell();
 	Spell(string n);
 
-	virtual void castSpell(Character &c) = 0;
+	//void castSpell(Character &c);
 
 	string getName();
 	void setName(string nSpell);

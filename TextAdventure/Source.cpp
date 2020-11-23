@@ -2,7 +2,8 @@
 
 int main() {
 
-	int nbrPlayer;
+	int nbrPlayer = 2;
+	nbrPlayer += 1;
 
 
 

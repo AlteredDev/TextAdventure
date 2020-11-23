@@ -8,6 +8,12 @@ Spell::Spell(string n):nameSpell(n)
 {
 }
 
+/*
+void Spell::castSpell(Character &c)
+{
+}
+*/
+
 string Spell::getName()
 {
 	return nameSpell;
@@ -27,3 +33,4 @@ void Spell::getManaCost(float mCost)
 {
 	manaCost = mCost;
 }
+

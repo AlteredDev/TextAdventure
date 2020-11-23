@@ -7,20 +7,21 @@ SpellHeal::SpellHeal()
 SpellHeal::SpellHeal(float hAmount):healAmount(hAmount)
 {
 }
-
+/*
 void SpellHeal::castSpell(Character &c)
 {
-	//cout << "Vous lancez le sort de soin et " << c.getName() << " récupère " << getHealAmount() << " points de vie." << endl;
-	/*
-	if ((c.getHP() + getHealAmount()) >= c.HPMax) {
-		c.setHP(c.HPMax);
+	cout << "Vous lancez le sort de soin et " << c.getFirstName() << " récupère " << getHealAmount() << " points de vie." << endl;
+	
+	if ((c.getHP() + getHealAmount()) >= c.getHPMax) {
+		c.setHP(c.getHPMax);
 	}
 	else {
 		c.setHP(c.getHP() + getHealAmount());
 	}
-	*/
+	
 
 }
+*/
 
 float SpellHeal::getHealAmount()
 {
