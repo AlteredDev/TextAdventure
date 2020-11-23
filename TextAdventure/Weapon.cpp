@@ -1,15 +1,22 @@
 #include "Weapon.h"
 
-void Weapon::SetName()
+Weapon::Weapon()
 {
 }
 
-void Weapon::SetDamage()
+void Weapon::SetName(string n)
 {
+	name = n;
 }
 
-void Weapon::SetDefense()
+void Weapon::SetDamage(float dmg)
 {
+	damage = dmg;
+}
+
+void Weapon::SetDefense(float dfn)
+{
+	defense = dfn;
 }
 
 string Weapon::GetName() {return name;}

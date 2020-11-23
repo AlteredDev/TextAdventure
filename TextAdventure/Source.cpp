@@ -1,5 +1,15 @@
 #include "Character.h"
 
-Character char1;
-//char1.SetCharacter();
+int main() {
+
+	int nbrPlayer;
+
+
+
+
+	Character c1;
+
+
+	return 0;
+}
 

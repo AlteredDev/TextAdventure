@@ -1,7 +1,7 @@
 #pragma once
 #include "Character.h"
 
-class Weapon : public Character
+class Weapon
 {
 private:
 	string name;
@@ -9,9 +9,11 @@ private:
 	float defense;
 
 public:
-	void SetName();
-	void SetDamage();
-	void SetDefense();
+	Weapon();
+
+	void SetName(string n);
+	void SetDamage(float dmg);
+	void SetDefense(float dfn);
 
 	string GetName();
 	float GetDamage();

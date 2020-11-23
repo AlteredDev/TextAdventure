@@ -10,8 +10,12 @@ class Character
 {
 private:
 	string name;
-	float pv;
+	string className;
+	float hp;
+	float hpMax;
 	float strength;
+	float mana;
+	float manaMax;
 	Weapon inventory[4];
 	float criticPerc;
 	Spell spells[3];
@@ -19,7 +23,7 @@ private:
 
 public:
 	Character();
-	void SetCharacter();
+	void CreateCharacter();
 
 
 };
