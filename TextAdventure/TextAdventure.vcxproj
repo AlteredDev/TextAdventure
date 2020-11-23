@@ -139,14 +139,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Character.cpp" />
-    <ClCompile Include="Class.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Spell.cpp" />
     <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h" />
-    <ClInclude Include="Class.h" />
     <ClInclude Include="Spell.h" />
     <ClInclude Include="Weapon.h" />
   </ItemGroup>
