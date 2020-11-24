@@ -6,6 +6,7 @@
 class Character : public Person
 {
 private:
+	bool PNJ;
 	string className;
 	string weakness;
 	float strength;
@@ -22,6 +23,7 @@ private:
 
 public:
 	Character();
+	Character(Person *p, string vClasseName, float vHP);
 
 	//Setter/Getter
 	string getClassName();

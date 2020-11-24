@@ -17,6 +17,10 @@ Character::Character():Person()
 	float speed = 0;
 }
 
+Character::Character(Person *p, string vClasseName, float vHP):Person(*p),className(vClasseName),hp(vHP)
+{
+}
+
 string Character::getClassName()
 {
 	return className;
@@ -173,9 +177,10 @@ void Character::defend()
 
 void Character::castSpell(Spell s, Person & p)
 {
+	Character c;
+	cout << "Vous lancez le sort de " << s.getNameSpell() << " sur " << p.getFirstName() << " " << p.getLastName() << "." << endl;
+	//s.castSpell(c);
 	/*
-	cout << "Vous lancez le sort de soin et " << p.getFirstName() << " récupère " << s.getHealAmount() << " points de vie." << endl;
-
 	if ((getHP() + getHealAmount()) >= getHPMax) {
 		setHP(c.getHPMax);
 	}
@@ -183,8 +188,8 @@ void Character::castSpell(Spell s, Person & p)
 		setHP(getHP() + getHealAmount());
 	}
 
-
 	*/
+	
 }
 
 void Character::showInventory()
@@ -193,6 +198,11 @@ void Character::showInventory()
 
 void Character::showInfo()
 {
+	/*
+	cout << getFirstName() << " " << getLastName() << endl;
+	cout << getAge() << " ans";
+	*/
+	cout << "Classe : " << getClassName() << " HP : " << getHP() << endl;
 }
 
 void Character::die()

@@ -22,9 +22,16 @@ protected:
 
 public:
 	Person();
+	Person(string fName, string lName);
 
 	string getFirstName();
 	void setFirstName(string fName);
+
+	string getLastName();
+	void setLastName(string lName);
+
+	int getAge();
+	void setAge(int vAge);
 
 	//getter/setter
 

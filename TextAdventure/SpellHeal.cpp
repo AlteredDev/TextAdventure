@@ -1,19 +1,19 @@
 #include "SpellHeal.h"
 
-SpellHeal::SpellHeal()
+SpellHeal::SpellHeal():Spell()
 {
 }
 
-SpellHeal::SpellHeal(float hAmount):healAmount(hAmount)
+SpellHeal::SpellHeal(Spell *s, float hAmount):Spell(*s),healAmount(hAmount)
 {
 }
-/*
+
 void SpellHeal::castSpell(Character &c)
 {
 	cout << "Vous lancez le sort de soin et " << c.getFirstName() << " récupère " << getHealAmount() << " points de vie." << endl;
 	
-	if ((c.getHP() + getHealAmount()) >= c.getHPMax) {
-		c.setHP(c.getHPMax);
+	if ((c.getHP() + getHealAmount()) >= c.getHPMax()) {
+		c.setHP(c.getHPMax());
 	}
 	else {
 		c.setHP(c.getHP() + getHealAmount());
@@ -21,7 +21,7 @@ void SpellHeal::castSpell(Character &c)
 	
 
 }
-*/
+
 
 float SpellHeal::getHealAmount()
 {

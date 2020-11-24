@@ -8,7 +8,6 @@ class Spell
 {
 private:
 	//int id;
-	//Rudhy tu fera pour me montrer
 	string nameSpell;
 	float manaCost;
 	//float damage;
@@ -17,12 +16,12 @@ public:
 	Spell();
 	Spell(string n);
 
-	//void castSpell(Character &c);
+	virtual void castSpell();
 
-	string getName();
-	void setName(string nSpell);
+	string getNameSpell();
+	void setNameSpell(string nSpell);
 
-	float getManaCost();
-	void getManaCost(float mCost);
+	float getManaCostSpell();
+	void getManaCostSpell(float mCost);
 };
 

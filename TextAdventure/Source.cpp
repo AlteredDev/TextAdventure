@@ -1,14 +1,24 @@
 #include "Character.h"
+#include "SpellHeal.h"
 
 int main() {
 
-	int nbrPlayer = 2;
-	nbrPlayer += 1;
+	Spell s;
+	s.setNameSpell("SOIN");
+	SpellHeal sHeal(&s,12);
+
+	
+
+	Person p1("Jinx", "Piltover");
+
+	Character c2;
+
+	Character c1(&p1,"Marksman",28.0);
+	c1.showInfo();
 
 
 
-
-	Character c1;
+	c1.castSpell(sHeal, c1);
 
 
 	return 0;

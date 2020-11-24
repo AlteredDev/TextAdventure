@@ -1,5 +1,6 @@
 #pragma once
 #include "Spell.h"
+#include "Character.h"
 
 class SpellHeal : public Spell
 {
@@ -8,9 +9,9 @@ private :
 
 public:
 	SpellHeal();
-	SpellHeal(float hAmount);
+	SpellHeal(Spell *s, float hAmount);
 
-	//void castSpell(Character &c);
+	void castSpell(Character &c);
 
 	float getHealAmount();
 	void setHealAmount(float hAmount);
