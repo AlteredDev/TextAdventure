@@ -1,6 +1,10 @@
 #include "Weapon.h"
 
-Weapon::Weapon()
+Weapon::Weapon():name(""), damage(0), defense(0), rarity(0)
+{
+}
+
+Weapon::Weapon(string n, float dmg, float dfn, float vRarity):name(n), damage(dmg), defense(dfn), rarity(vRarity)
 {
 }
 

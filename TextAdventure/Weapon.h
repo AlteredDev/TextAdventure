@@ -14,6 +14,7 @@ private:
 
 public:
 	Weapon();
+	Weapon(string n, float dmg, float dfn, float vRarity);
 
 	void SetName(string n);
 	void SetDamage(float dmg);
