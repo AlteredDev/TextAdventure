@@ -18,7 +18,7 @@ private:
 	float mana;
 	float manaMax;
 
-	Inventory invChar;
+	Inventory* invChar;
 	Spell spells[3];
 
 public:
@@ -51,7 +51,7 @@ public:
 	void setManaMax(float vManaMax);
 
 	Inventory getInvChar();
-	void setInvChar(Inventory &vInvChar);
+	void setInvChar(Inventory *vInvChar);
 
 	/*
 	Spell getSpells(Spell &vSpells);

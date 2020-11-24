@@ -103,10 +103,10 @@ void Character::setManaMax(float vManaMax)
 
 Inventory Character::getInvChar()
 {
-	return invChar;
+	return *invChar;
 }
 
-void Character::setInvChar(Inventory & vInvChar)
+void Character::setInvChar(Inventory  *vInvChar)
 {
 	invChar = vInvChar;
 }
