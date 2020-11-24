@@ -8,7 +8,7 @@ void Ennemy::createEnnemy()
 {
 }
 
-bool Ennemy::attack(Character & e)
+bool Ennemy::attack(Person & p)
 {
 	return false;
 }

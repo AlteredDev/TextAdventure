@@ -1,5 +1,6 @@
 #pragma once
-#include "Character.h"
+#include "Person.h"
+#include "Spell.h"
 #include <iostream>
 #include <string>
 
@@ -30,7 +31,7 @@ public:
 	//creation de l'ennemi ( etc...)
 	void createEnnemy();
 	//attaquer un ennemi --> attackFailed/AttackSucced
-	bool attack(Character &e);
+	bool attack(Person &p);
 	//cast un spell S sur la personne p
 	void castSpell(Spell s, Person &p);
 	//montrer/rappeller les infos character
