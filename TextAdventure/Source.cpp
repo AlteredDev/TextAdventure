@@ -21,6 +21,21 @@ int main() {
 	c1.showInfo();
 	*/
 
+	/*
+	Weapon w1("Bouclier", 1, 10, 20);
+    Weapon w2("Epee", 20, 0, 10);
+    Weapon w3("Baton de mage", 5, 0, 30);
+    Weapon w4("Lance", 15, 0, 5);
+    Weapon w5("Blouclier à pointe", 5, 7, 35);
+
+    c1.getInvChar().addWeapon(&w1);
+    c1.getInvChar().addWeapon(&w2);
+    c1.getInvChar().addWeapon(&w3);
+    c1.getInvChar().addWeapon(&w4);
+    c1.getInvChar().addWeapon(&w5);
+    c1.getInvChar().equipWeapon();
+	*/
+
 	return 0;
 }
 
