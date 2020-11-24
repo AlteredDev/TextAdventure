@@ -10,7 +10,7 @@ using namespace std;
 class Inventory
 {
 private:
-	Weapon* weaponTab[4];
+	Weapon* weaponTab[4] = {};
 	Weapon actualWeapon;
 
 public:
