@@ -4,19 +4,23 @@
 
 using namespace std;
 
-class Spell
+class Spell // faire des enfants --> je vois pas comment arriver a utiliser enfants sans
 {
-private:
-	//int id;
+protected:
+	int id;
 	string nameSpell;
 	float manaCost;
-	//float damage;
+	//float damage; // degueu
+	//float healAmount; // degueu
 
 public:
 	Spell();
 	Spell(string n);
 
-	virtual void castSpell();
+	virtual float castSpell();
+
+	int getID();
+	void setID(int vID);
 
 	string getNameSpell();
 	void setNameSpell(string nSpell);

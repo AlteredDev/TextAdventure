@@ -9,8 +9,19 @@ Spell::Spell(string n):nameSpell(n)
 }
 
 
-void Spell::castSpell()
+float Spell::castSpell()
 {
+	return 0.0;
+}
+
+int Spell::getID()
+{
+	return id;
+}
+
+void Spell::setID(int vID)
+{
+	id = vID;
 }
 
 

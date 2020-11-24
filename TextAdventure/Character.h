@@ -23,7 +23,7 @@ private:
 
 public:
 	Character();
-	Character(Person *p, string vClasseName, float vHP);
+	Character(Person *p, string vClasseName, float vHP, float vHPMax);
 
 	//Setter/Getter
 	string getClassName();
@@ -65,7 +65,7 @@ public:
 	//se défendre (ssi Weapon.defense > 0)
 	void defend();
 	//cast un spell S sur la personne p
-	void castSpell(Spell s, Person &p);
+	bool castSpell(Spell &s, Person &p);
 	//montrer l'inventaire actuel du personnage
 	void showInventory();
 	//montrer/rappeller les infos character
