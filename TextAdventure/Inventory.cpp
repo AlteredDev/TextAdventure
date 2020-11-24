@@ -17,7 +17,7 @@ void Inventory::equipWeapon()
 			}
 			break;
 		}
-		cout << endl << weaponTab[i]->GetName() << " (" << i << ") \n\n";
+		cout << endl << weaponTab[i]->GetName() << " (" << i << ")\n\n";
 	}
 	if (possede) {
 		int select;
@@ -33,6 +33,7 @@ void Inventory::addWeapon(Weapon *newWeapon)
 	int i;
 	for (i = 0; i < 4; i++) {
 		if (weaponTab[i] == NULL) {
+			cout << i << endl;
 			plein = false;
 			break;
 		}
@@ -41,6 +42,6 @@ void Inventory::addWeapon(Weapon *newWeapon)
 
 	else {
 		weaponTab[i] = newWeapon;
-		cout << "\nArme ajouté";
+		cout << "\nArme ajouté\n";
 	}
 }
