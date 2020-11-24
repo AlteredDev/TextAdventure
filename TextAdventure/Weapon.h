@@ -25,5 +25,7 @@ public:
 	float GetDamage();
 	float GetDefense();
 	float setRarity();
+
+	void showInfoWeapon();
 };
 

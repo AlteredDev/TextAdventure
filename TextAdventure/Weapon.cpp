@@ -38,3 +38,10 @@ float Weapon::setRarity()
 {
 	return rarity;
 }
+
+void Weapon::showInfoWeapon()
+{
+	cout << "\tName : " << GetName() << "\tDamage : " << GetDamage() << endl;
+
+
+}

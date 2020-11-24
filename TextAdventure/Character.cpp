@@ -124,10 +124,18 @@ void Character::setSpells(Spell & vSpells)
 
 void Character::createCharacter()
 {
+	string stringInput;
+	int intInput;
 	system("cls");
-	cout << "Nouveau perso\n\nEntrer votre nom :";
-	//cin.clear();  cin >> name;
-	//setNomPerson()
+	cout << "Nouveau perso\n\nEntrez votre nom :\n";
+	cin.clear();  cin >> stringInput;
+	setLastName(stringInput);
+	cout << "\n\nEntrez votre prénom :\n";
+	cin.clear();  cin >> stringInput;
+	setFirstName(stringInput);
+	cout << "\n\nEntrez votre âge :\n";
+	cin.clear();  cin >> intInput;
+	setAge(intInput);
 	
 	int numClass;
 	cout << "\n\nVous avez le choix entre plusieurs classes,\nMage(1), Paladin(2) ou Warrior(3)\nVeuiller rentrer le chiffre correspondant à la classe que vous choisirez :\n\n";
