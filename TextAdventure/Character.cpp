@@ -175,34 +175,32 @@ void Character::defend()
 
 }
 
-bool Character::castSpell(Spell &s, Person &p)
+void Character::castSpell(Spell &s, Person &p)
 {
 	if (s.getManaCostSpell() > getMana()) {
 		cout << "Vous n'avez pas assez de mana pour invoquer le sort." << endl;
-		return false;
 	}
 	else {
 		cout << "Vous lancez le sort de " << s.getNameSpell() << " sur " << p.getFirstName() << " " << p.getLastName() << "." << endl;
+		float val = s.castSpell();
+
+		switch (s.getID())
+		{
+		case 1: // heal
+			if ((getHP() + val) >= getHPMax()) {
+				setHP(getHPMax());
+			}
+			else {
+				setHP(getHP() + val);
+			}
+			break;
+		case 2: // boost dmg
+			getInvChar().getActualWeapon().GetDamage() + val;
+			break;
+		}
+
 	}
 
-	float val = s.castSpell();
-
-	switch (s.getID()) 
-	{
-	case 1: // heal
-		if ((getHP() + val) >= getHPMax()) {
-			setHP(getHPMax());
-		}
-		else {
-			setHP(getHP() + val);
-		}
-		break;
-	case 2: // boost dmg
-		getInvChar().getActualWeapon().GetDamage() + val;
-		break;
-	}
-
-	return true;
 	//s.castSpell(c);
 	/*
 	if ((getHP() + getHealAmount()) >= getHPMax) {

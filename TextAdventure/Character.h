@@ -65,7 +65,7 @@ public:
 	//se défendre (ssi Weapon.defense > 0)
 	void defend();
 	//cast un spell S sur la personne p
-	bool castSpell(Spell &s, Person &p);
+	void castSpell(Spell &s, Person &p);
 	//montrer l'inventaire actuel du personnage
 	void showInventory();
 	//montrer/rappeller les infos character
