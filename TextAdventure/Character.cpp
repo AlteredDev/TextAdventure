@@ -136,13 +136,24 @@ void Character::createCharacter()
 	{
 	case 1:
 		className = "Mage";
-
+		strength = 5;
+		criticPerc = 0.7;
+		hpMax = 80;
+		manaMax = 15;
 		break;
 	case 2:
 		className = "Paladin";
+		strength = 10;
+		criticPerc = 0.5;
+		hpMax = 90;
+		manaMax = 5;
 		break;
 	case 3:
 		className = "Warrior";
+		strength = 15;
+		criticPerc = 0.3;
+		hpMax = 95;
+		manaMax = 0;
 		break;
 	}
 
@@ -150,14 +161,14 @@ void Character::createCharacter()
 	cout << "\n\nVous serez donc un " << className;
 }
 
-bool Character::attack(Person &p)
+void Character::attack(Person &p)
 {
-	return false;
+
 }
 
-bool Character::defend()
+void Character::defend()
 {
-	return false;
+
 }
 
 void Character::castSpell(Spell s, Person & p)

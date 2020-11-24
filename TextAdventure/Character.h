@@ -59,9 +59,9 @@ public:
 	//creation du character (+ class etc...)
 	void createCharacter();
 	//attaquer un ennemi --> attackFailed/AttackSucced
-	bool attack(Person &p);
+	void attack(Person &p);
 	//se défendre (ssi Weapon.defense > 0)
-	bool defend();
+	void defend();
 	//cast un spell S sur la personne p
 	void castSpell(Spell s, Person &p);
 	//montrer l'inventaire actuel du personnage
