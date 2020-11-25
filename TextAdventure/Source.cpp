@@ -1,15 +1,63 @@
 #include "Character.h"
 #include "SpellHeal.h"
 
+int RangeIntInput(int min, int max) {
+	int input; cin >> input;
+	while (cin.fail() || input < min || input > max) {
+		cin.clear(); cin.ignore();
+		cout << "\nEnter en valid number :\n";
+		cin >> input;
+	}
+	return input;
+}
+
 int main() {
 
-	Spell s;
+	Weapon w1("Wood Shield", 1, 10, 20);
+	Weapon w2("Wood Sword", 20, 0, 10);
+	Weapon w3("Wizard Stick", 5, 0, 30);
+	Weapon w4("Bad Spear", 15, 0, 5);
+	Weapon w5("Spiked Shield", 5, 7, 35);
+
+	vector<Character> group;
+	Inventory groupInv;
+
+	vector<Character> ennemies;
+
+	int intInput;
+
+	//Intro
+	cout << "\n\tWelcome, young adventurer, to TextAdventure!\n\nYou are going to start a whole new adventure.\nWould you like to create a character (1) or use an already created character (2) :\n";
+	intInput = RangeIntInput(1, 2);
+
+
+	cout << "\nHow many characater do you want to create (1 min - 4 max) :\n";
+	intInput = RangeIntInput(1, 4);
+
+
+	for (int i = 0; i < intInput; i++) {
+		system("cls");
+		Character newCharacter;
+		group.push_back(newCharacter); //inserting the character
+		group[i].createCharacter(); //creation du perso
+		group[i].setInvChar(&groupInv); //bind l'inv du perso à celui du group
+	}
+	groupInv.setInvSize(group.size() * 4); //set inv size
+	system("cls");
+	for (int i = 0; i < group.size(); i++) {
+		groupInv.addWeapon(&w1);
+		group[i].getInvChar().equipWeapon();
+	}
+
+
+
+	/*Spell s;
 	s.setNameSpell("SOIN");
 	SpellHeal sHeal(&s,12);
 	SpellHeal s1(&s, 12);
 
-	
-	/*
+
+
 	Person p1("Jinx", "Piltover");
 
 	Character c2;
@@ -19,22 +67,22 @@ int main() {
 	c1.castSpell(s1, c1); // j'ai pas pointeur
 
 	c1.showInfo();
-	*/
 
-	/*
-	Weapon w1("Bouclier", 1, 10, 20);
-    Weapon w2("Epee", 20, 0, 10);
-    Weapon w3("Baton de mage", 5, 0, 30);
-    Weapon w4("Lance", 15, 0, 5);
-    Weapon w5("Blouclier à pointe", 5, 7, 35);
+	Person p1("Jinx", "Piltover");
+	Character c1(&p1, "Marksman", 28.0, 58.0);
 
-    c1.getInvChar().addWeapon(&w1);
-    c1.getInvChar().addWeapon(&w2);
-    c1.getInvChar().addWeapon(&w3);
-    c1.getInvChar().addWeapon(&w4);
-    c1.getInvChar().addWeapon(&w5);
-    c1.getInvChar().equipWeapon();
-	*/
+
+	Inventory i;
+	c1.setInvChar(&i);
+
+	i.addWeapon(&w1);
+	i.addWeapon(&w2);
+	i.addWeapon(&w3);
+	i.addWeapon(&w4);
+	i.addWeapon(&w5);
+	c1.getInvChar().equipWeapon();*/
+
+
 
 	return 0;
 }

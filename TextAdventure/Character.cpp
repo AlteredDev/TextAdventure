@@ -1,8 +1,9 @@
 #include "Character.h"
 
+
+
 Character::Character():Person()
 {
-	cout << "Constructeur Personnage" << endl;
 	className = "";
 	hp = 0;
 	strength = 0;
@@ -127,21 +128,27 @@ void Character::createCharacter()
 	string stringInput;
 	int intInput;
 	system("cls");
-	cout << "Nouveau perso\n\nEntrez votre nom :\n";
-	cin.clear();  cin >> stringInput;
-	setLastName(stringInput);
-	cout << "\n\nEntrez votre prénom :\n";
-	cin.clear();  cin >> stringInput;
+	cout << "New character\n\nEnter the first name :\n";
+	cin >> stringInput;
 	setFirstName(stringInput);
-	cout << "\n\nEntrez votre âge :\n";
-	cin.clear();  cin >> intInput;
+	cout << "\nEnter the last name :\n";
+	cin >> stringInput;
+	setLastName(stringInput);
+	cout << "\nEnter the age :\n";
+	cin >> intInput; 
+	while (cin.fail() || intInput < 1) {
+		cin.clear(); cin.ignore();
+		cout << "Enter an age between 18 and 99 :\n";
+		cin.clear();  cin >> intInput;
+	}
 	setAge(intInput);
 	
 	int numClass;
-	cout << "\n\nVous avez le choix entre plusieurs classes,\nMage(1), Paladin(2) ou Warrior(3)\nVeuiller rentrer le chiffre correspondant à la classe que vous choisirez :\n\n";
+	cout << "\nYou have the choice between many classes, Mage(1), Paladin(2) or Warrior(3)\n\nPlease enter the number corresponding to the class you will choose :\n";
 	cin.clear();  cin >> numClass;
 	while (cin.fail() || numClass < 1 || numClass > 3) {
-		cout << "Veuillez rentrer un chiffre valide :";
+		cin.clear(); cin.ignore();
+		cout << "Enter a valid number :\n";
 		cin.clear();  cin >> numClass;
 	}
 	switch (numClass)
@@ -170,7 +177,8 @@ void Character::createCharacter()
 	}
 
 
-	cout << "\n\nVous serez donc un " << className;
+	cout << "\n\nYou will therefore be " << getFirstName() << " " << getLastName() << ", " << getAge() << " years old, a " << className <<".";
+	Sleep(5000);
 }
 
 void Character::attack(Person &p)
@@ -186,10 +194,10 @@ void Character::defend()
 void Character::castSpell(Spell &s, Person &p)
 {
 	if (s.getManaCostSpell() > getMana()) {
-		cout << "Vous n'avez pas assez de mana pour invoquer le sort." << endl;
+		cout << "You don't have enough mana to cast the spell." << endl;
 	}
 	else {
-		cout << "Vous lancez le sort de " << s.getNameSpell() << " sur " << p.getFirstName() << " " << p.getLastName() << "." << endl;
+		cout << "You cast the spell of " << s.getNameSpell() << " on " << p.getFirstName() << " " << p.getLastName() << "." << endl;
 		float val = s.castSpell();
 
 		switch (s.getID())
@@ -226,13 +234,15 @@ void Character::showInventory()
 {
 }
 
+
+
 void Character::showInfo()
 {
 	/*
 	cout << getFirstName() << " " << getLastName() << endl;
 	cout << getAge() << " ans";
 	*/
-	cout << "Classe : " << getClassName() << " HP : " << getHP() << " HPMax : " << getHPMax() << endl;
+	cout << getFirstName() << " " << getLastName() << endl << "Class : " << getClassName() << endl << " HP : " << getHP() << "/" << getHPMax() << endl;
 }
 
 void Character::die()

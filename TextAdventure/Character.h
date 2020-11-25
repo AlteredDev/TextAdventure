@@ -1,4 +1,5 @@
 #pragma once
+#include <windows.h>
 #include "Person.h"
 #include "Spell.h"
 #include "Inventory.h"
@@ -19,6 +20,7 @@ private:
 	float manaMax;
 
 	Inventory* invChar;
+	Weapon actualWeapon;
 	Spell spells[3];
 
 public:
@@ -52,6 +54,8 @@ public:
 
 	Inventory getInvChar();
 	void setInvChar(Inventory *vInvChar);
+
+
 
 	/*
 	Spell getSpells(Spell &vSpells);

@@ -7,10 +7,10 @@ Weapon Inventory::getActualWeapon()
 
 void Inventory::equipWeapon()
 {
-	cout << "\n\nVoici votre inventaire :\n";
+	cout << "\n\nInventory :\n\n";
 	bool possede = true;
 	int i;
-	for (i = 0; i < 4; i++) {
+	for (i = 0; i < invSize; i++) {
 		if (weaponTab[i] == NULL) {
 			if (i == 0) {
 				cout << "\tAucune arme possédé";
@@ -18,18 +18,18 @@ void Inventory::equipWeapon()
 			}
 			break;
 		}
-		else { cout << endl << weaponTab[i]->GetName() << " (" << i << ")\n"; }
+		else { cout  << weaponTab[i]->GetName() << " (" << i << ")\n"; }
 	}
 	if (possede) {
-		cout << "\nVeuillez choisir une arme :\n";
+		cout << "\nChoose your weapon :\n";
 		int select;
 		cin.clear(); cin >> select;
 		while (cin.fail() || select < 0 || select > i-1) {
-			cout << "\nVeuillez entrer un chiffre valide :\n";
+			cout << "\nEnter a valid number :\n";
 			cin >> select;
 		}
 		actualWeapon = *weaponTab[select];
-		cout << actualWeapon.GetName() << " équipé\n";
+		cout << actualWeapon.GetName() << " equipped\n";
 	}
 }
 
@@ -37,16 +37,21 @@ void Inventory::addWeapon(Weapon *newWeapon)
 {
 	bool plein = true;
 	int i;
-	for (i = 0; i < 4; i++) {
+	for (i = 0; i < invSize; i++) {
 		if (weaponTab[i] == NULL) {
 			plein = false;
 			break;
 		}
 	}
-	if (plein) {cout << "\nInventaire d'arme plein";}
+	if (plein) {cout << "\nWeapon inventory is full\n";}
 
 	else {
 		weaponTab[i] = newWeapon;
-		cout << endl << newWeapon->GetName() << " ajouté à votre inventaire\n";
+		cout << endl << newWeapon->GetName() << " added to the inventory\n";
 	}
+}
+
+void Inventory::setInvSize(int size)
+{
+	invSize = size;
 }
