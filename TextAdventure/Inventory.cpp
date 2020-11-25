@@ -1,11 +1,6 @@
 #include "Inventory.h"
 
-Weapon Inventory::getActualWeapon()
-{
-	return actualWeapon;
-}
-
-void Inventory::equipWeapon()
+Weapon* Inventory::equipWeapon()
 {
 	cout << "\n\nInventory :\n\n";
 	bool possede = true;
@@ -28,8 +23,7 @@ void Inventory::equipWeapon()
 			cout << "\nEnter a valid number :\n";
 			cin >> select;
 		}
-		actualWeapon = *weaponTab[select];
-		cout << actualWeapon.GetName() << " equipped\n";
+		return weaponTab[select];
 	}
 }
 
@@ -53,5 +47,13 @@ void Inventory::addWeapon(Weapon *newWeapon)
 
 void Inventory::setInvSize(int size)
 {
+	for (int i = 0; i < size; i++) {
+		weaponTab.push_back(NULL);
+	}
 	invSize = size;
+}
+
+vector<Weapon*> Inventory::getWeaponTab()
+{
+	return weaponTab;
 }

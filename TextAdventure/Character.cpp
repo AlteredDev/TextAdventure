@@ -102,6 +102,16 @@ void Character::setManaMax(float vManaMax)
 	manaMax = vManaMax;
 }
 
+string Character::getCharFirstName()
+{
+	return getFirstName();
+}
+
+string Character::getCharLastName()
+{
+	return getLastName();
+}
+
 Inventory Character::getInvChar()
 {
 	return *invChar;
@@ -110,6 +120,22 @@ Inventory Character::getInvChar()
 void Character::setInvChar(Inventory  *vInvChar)
 {
 	invChar = vInvChar;
+}
+
+void Character::equipWeapon()
+{
+	actualWeapon = getInvChar().equipWeapon();
+	cout << getFirstName() << " " << getLastName() << " is now equipped of a " << actualWeapon->GetName() << ".\n";
+}
+
+void Character::setActualWeapon(Weapon *newWeapon)
+{
+	actualWeapon = newWeapon;
+}
+
+Weapon* Character::getActualWeapon()
+{
+	return actualWeapon;
 }
 
 /*
@@ -158,27 +184,33 @@ void Character::createCharacter()
 		strength = 5;
 		criticPerc = 0.7;
 		hpMax = 80;
+		hp = hpMax;
 		manaMax = 15;
+		mana = manaMax;
 		break;
 	case 2:
 		className = "Paladin";
 		strength = 10;
 		criticPerc = 0.5;
 		hpMax = 90;
+		hp = hpMax;
 		manaMax = 5;
+		mana = manaMax;
 		break;
 	case 3:
 		className = "Warrior";
 		strength = 15;
 		criticPerc = 0.3;
 		hpMax = 95;
+		hp = hpMax;
 		manaMax = 0;
+		mana = manaMax;
 		break;
 	}
 
 
 	cout << "\n\nYou will therefore be " << getFirstName() << " " << getLastName() << ", " << getAge() << " years old, a " << className <<".";
-	Sleep(5000);
+	Sleep(000); //delay when creating, so the player can read the summeriz
 }
 
 void Character::attack(Person &p)
@@ -211,7 +243,7 @@ void Character::castSpell(Spell &s, Person &p)
 			}
 			break;
 		case 2: // boost dmg
-			getInvChar().getActualWeapon().GetDamage() + val;
+			actualWeapon->GetDamage() + val;
 			break;
 		}
 
@@ -242,7 +274,7 @@ void Character::showInfo()
 	cout << getFirstName() << " " << getLastName() << endl;
 	cout << getAge() << " ans";
 	*/
-	cout << getFirstName() << " " << getLastName() << endl << "Class : " << getClassName() << endl << " HP : " << getHP() << "/" << getHPMax() << endl;
+	cout << getFirstName() << " " << getLastName() << endl << "Class : " << getClassName() << endl << " HP : " << getHP() << "/" << getHPMax() << "\nEquipped weapon : " << actualWeapon->GetName() << endl;
 }
 
 void Character::die()

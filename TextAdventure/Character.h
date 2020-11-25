@@ -20,7 +20,7 @@ private:
 	float manaMax;
 
 	Inventory* invChar;
-	Weapon actualWeapon;
+	Weapon* actualWeapon = NULL;
 	Spell spells[3];
 
 public:
@@ -52,10 +52,16 @@ public:
 	float getManaMax();
 	void setManaMax(float vManaMax);
 
+	string getCharFirstName();
+	string getCharLastName();
+
+
 	Inventory getInvChar();
 	void setInvChar(Inventory *vInvChar);
 
-
+	void equipWeapon();
+	void setActualWeapon(Weapon *newWeapon);
+	Weapon* getActualWeapon();
 
 	/*
 	Spell getSpells(Spell &vSpells);

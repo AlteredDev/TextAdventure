@@ -11,6 +11,28 @@ int RangeIntInput(int min, int max) {
 	return input;
 }
 
+void showGroupInv(Inventory Inv, vector<Character> Group) {
+	system("cls");
+
+	cout << "\nWeapon :\n\n";
+	for (int i = 0; i < Inv.getWeaponTab().size(); i++) {
+		if (Inv.getWeaponTab()[i] == NULL) {break;}
+		cout << "\t" << Inv.getWeaponTab()[i]->GetName() << endl;
+	}
+
+	cout << "\n\nItems :\n\n";
+
+	cout << "\n\nEquipment :\n\n";
+	for (int i = 0; i < Group.size(); i++) {
+		if (Group[i].getActualWeapon() != NULL) {
+			cout << "\t" << Group[i].getCharFirstName() << " " << Group[i].getCharLastName() << " is equipped with a " << Group[i].getActualWeapon()->GetName() << endl;
+		}
+		else {
+			cout << "\t" << Group[i].getCharFirstName() << " " << Group[i].getCharLastName() << " is unequipped" << endl;
+		}
+	}
+}
+
 int main() {
 
 	Weapon w1("Wood Shield", 1, 10, 20);
@@ -45,10 +67,28 @@ int main() {
 	groupInv.setInvSize(group.size() * 4); //set inv size
 	system("cls");
 	for (int i = 0; i < group.size(); i++) {
-		groupInv.addWeapon(&w1);
-		group[i].getInvChar().equipWeapon();
+		if (group[i].getClassName() == "Mage") {
+			groupInv.addWeapon(&w3);
+			continue;
+		}
+		else if (group[i].getClassName() == "Paladin") {
+			groupInv.addWeapon(&w4);
+			continue;
+		}
+		else if (group[i].getClassName() == "Warrior") {
+			groupInv.addWeapon(&w2);
+			continue;
+		}
 	}
 
+	showGroupInv(groupInv, group);
+
+	for (int i = 0; i < group.size(); i++) {
+		group[i].equipWeapon();
+	}
+
+
+	showGroupInv(groupInv, group);
 
 
 	/*Spell s;
