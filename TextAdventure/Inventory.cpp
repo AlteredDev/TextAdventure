@@ -50,11 +50,12 @@ void Inventory::addWeapon(Weapon *newWeapon)
 	}
 	if (plein) {
 		int input;
+		system("cls");
 		cout << "\nThe weapon inventory is full, can't add " << newWeapon->GetName() << "\n\nDo you want to throw one away :\tYes(1) No(2)\n";
 		cin >> input;
 		if (input == 1) {
 			system("cls");
-			cout << "Inventory :";
+			cout << "Inventory :\n\n";
 			int a;
 			for (a = 0; a < invSize; a++) {
 				cout << weaponTab[a]->GetName() << " (" << a << ")\n";
@@ -67,9 +68,10 @@ void Inventory::addWeapon(Weapon *newWeapon)
 				cin >> select;
 			}
 			weaponTab[select] = newWeapon;
+			cout << endl << newWeapon->GetName() << " added to the inventory\n";
 		}
 		else {
-			cout << endl << newWeapon->GetName << ;
+			cout << endl << newWeapon->GetName() << " not added to the inventory\n";
 		}
 	}
 
