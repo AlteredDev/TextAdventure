@@ -48,7 +48,30 @@ void Inventory::addWeapon(Weapon *newWeapon)
 			break;
 		}
 	}
-	if (plein) {cout << "\nWeapon inventory is full\n";}
+	if (plein) {
+		int input;
+		cout << "\nThe weapon inventory is full, can't add " << newWeapon->GetName() << "\n\nDo you want to throw one away :\tYes(1) No(2)\n";
+		cin >> input;
+		if (input == 1) {
+			system("cls");
+			cout << "Inventory :";
+			int a;
+			for (a = 0; a < invSize; a++) {
+				cout << weaponTab[a]->GetName() << " (" << a << ")\n";
+			}
+			cout << "\nChoose the weapon to throw away :\n";
+			int select;
+			cin.clear(); cin >> select;
+			while (cin.fail() || select < 0 || select > a - 1) {
+				cout << "\nEnter a valid number :\n";
+				cin >> select;
+			}
+			weaponTab[select] = newWeapon;
+		}
+		else {
+			cout << endl << newWeapon->GetName << ;
+		}
+	}
 
 	else {
 		weaponTab[i] = newWeapon;

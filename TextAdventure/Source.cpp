@@ -11,24 +11,24 @@ int RangeIntInput(int min, int max) {
 	return input;
 }
 
-void showGroupInv(Inventory Inv, vector<Character> Group) {
+void showGroupInv(Inventory inv, vector<Character*> group) {
 	system("cls");
 
 	cout << "\nWeapon :\n\n";
-	for (int i = 0; i < Inv.getWeaponTab().size(); i++) {
-		if (Inv.getWeaponTab()[i] == NULL) {break;}
-		cout << "\t" << Inv.getWeaponTab()[i]->GetName() << endl;
+	for (int i = 0; i < inv.getWeaponTab().size(); i++) {
+		if (inv.getWeaponTab()[i] == NULL) {break;}
+		cout << "\t" << inv.getWeaponTab()[i]->GetName() << endl;
 	}
 
 	cout << "\n\nItems :\n\n";
 
 	cout << "\n\nEquipment :\n\n";
-	for (int i = 0; i < Group.size(); i++) {
-		if (Group[i].getActualWeapon() != NULL) {
-			cout << "\t" << Group[i].getFirstName() << " " << Group[i].getLastName() << " is equipped with a " << Group[i].getActualWeapon()->GetName() << endl;
+	for (int i = 0; i < group.size(); i++) {
+		if (group[i]->getActualWeapon() != NULL) {
+			cout << "\t" << group[i]->getFirstName() << " " << group[i]->getLastName() << " is equipped with a " << group[i]->getActualWeapon()->GetName() << endl;
 		}
 		else {
-			cout << "\t" << Group[i].getFirstName() << " " << Group[i].getLastName() << " is unequipped" << endl;
+			cout << "\t" << group[i]->getFirstName() << " " << group[i]->getLastName() << " is unequipped" << endl;
 		}
 	}
 }
@@ -41,10 +41,10 @@ int main() {
 	Weapon w4("Bad Spear", 15, 0, 5);
 	Weapon w5("Spiked Shield", 5, 7, 35);
 
-	vector<Character> group;
+	vector<Character*> group;
 	Inventory groupInv;
 
-	vector<Character> ennemies;
+	vector<Character*> ennemies;
 
 	int intInput;
 
@@ -60,22 +60,22 @@ int main() {
 	for (int i = 0; i < intInput; i++) {
 		system("cls");
 		Character newCharacter;
-		group.push_back(newCharacter); //inserting the character
-		group[i].createCharacter(); //creation du perso
-		group[i].setInvChar(&groupInv); //bind l'inv du perso à celui du group
+		group.push_back(&newCharacter); //inserting the character
+		group[i]->createCharacter(); //creation du perso
+		group[i]->setInvChar(&groupInv); //bind l'inv du perso à celui du group
 	}
 	groupInv.setInvSize(group.size() * 4); //set inv size
 	system("cls");
 	for (int i = 0; i < group.size(); i++) {
-		if (group[i].getClassName() == "Mage") {
+		if (group[i]->getClassName() == "Mage") {
 			groupInv.addWeapon(&w3);
 			continue;
 		}
-		else if (group[i].getClassName() == "Paladin") {
+		else if (group[i]->getClassName() == "Paladin") {
 			groupInv.addWeapon(&w4);
 			continue;
 		}
-		else if (group[i].getClassName() == "Warrior") {
+		else if (group[i]->getClassName() == "Warrior") {
 			groupInv.addWeapon(&w2);
 			continue;
 		}
@@ -84,15 +84,11 @@ int main() {
 	showGroupInv(groupInv, group);
 
 	for (int i = 0; i < group.size(); i++) {
-		group[i].equipWeapon(&groupInv);
+		group[i]->equipWeapon(&groupInv);
 	}
 
 
 	showGroupInv(groupInv, group);
-
-	//Vérifier à chaque tour de jeu si un Character isDead() -->
-	//		SI true : enlever tableau + appel destructeur
-	//		SI false : rien
 
 
 	/*Spell s;
