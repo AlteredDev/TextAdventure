@@ -59,7 +59,7 @@ public:
 	Inventory getInvChar();
 	void setInvChar(Inventory *vInvChar);
 
-	void equipWeapon();
+	void equipWeapon(Inventory* Inv);
 	void setActualWeapon(Weapon *newWeapon);
 	Weapon* getActualWeapon();
 
@@ -77,8 +77,6 @@ public:
 	//cast un spell S sur la personne p
 	void castSpell(Spell &s, Character &c);
 	//montrer l'inventaire actuel du personnage
-	void showInventory();
-	//montrer/rappeller les infos character
 	void showInfo();
 	//mourrir de la mort qui tue
 	void die(Character &c);

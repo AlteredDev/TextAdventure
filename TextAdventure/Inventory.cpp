@@ -23,7 +23,18 @@ Weapon* Inventory::equipWeapon()
 			cout << "\nEnter a valid number :\n";
 			cin >> select;
 		}
-		return weaponTab[select];
+		Weapon* newWeapon = weaponTab[select];
+		for (i = 0; i < invSize - select; i++) {
+			//cout << 1 << endl;
+			//if (weaponTab[select + i] == NULL) { break; }
+			if (select + i + 1 >= weaponTab.size() || weaponTab[select + i + 1] == NULL) {
+				weaponTab[select + i] = NULL;
+				break; 
+			}
+			weaponTab[select + i] = weaponTab[select + i + 1];
+			
+		}
+		return newWeapon;
 	}
 }
 
