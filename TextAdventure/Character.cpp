@@ -102,14 +102,14 @@ void Character::setManaMax(float vManaMax)
 	manaMax = vManaMax;
 }
 
-string Character::getCharFirstName()
+bool Character::getIsDead()
 {
-	return getFirstName();
+	return isDead;
 }
 
-string Character::getCharLastName()
+void Character::setIsDead(bool dead)
 {
-	return getLastName();
+	isDead = dead;
 }
 
 Inventory Character::getInvChar()
@@ -223,27 +223,38 @@ void Character::defend()
 
 }
 
-void Character::castSpell(Spell &s, Person &p)
+void Character::castSpell(Spell &s, Character &c)
 {
 	if (s.getManaCostSpell() > getMana()) {
 		cout << "You don't have enough mana to cast the spell." << endl;
 	}
 	else {
-		cout << "You cast the spell of " << s.getNameSpell() << " on " << p.getFirstName() << " " << p.getLastName() << "." << endl;
-		float val = s.castSpell();
+		cout << "You cast the spell of " << s.getNameSpell() << " on " << c.getFirstName() << " " << c.getLastName() << "." << endl;
+		float val = s.getSpellEffect();
 
 		switch (s.getID())
 		{
 		case 1: // heal
-			if ((getHP() + val) >= getHPMax()) {
-				setHP(getHPMax());
+			if ((c.getHP() + val) >= c.getHPMax()) {
+				c.setHP(c.getHPMax());
 			}
 			else {
-				setHP(getHP() + val);
+				c.setHP(c.getHP() + val);
 			}
+			cout << c.getFirstName() << " " << c.getLastName() << " has recovered " << val << " HP !" << endl;
 			break;
 		case 2: // boost dmg
-			actualWeapon->GetDamage() + val;
+			c.setStrength(c.getStrength() * val);
+			cout << "The strength of " << c.getFirstName() << " " << c.getLastName() << " has been multiplied by " << val << endl;
+			cout << "The strength of " << c.getFirstName() << " " << c.getLastName() << " is now : " << c.getStrength() << endl;
+			break;
+		case 3: // cast le spell --> faire un tick de degat en mode setStatusEffect("Fire");
+			if ((c.getHP() - val) <= 0) {
+				die(c);
+			}
+			else {
+				setHP(getHP() - val);
+			}
 			break;
 		}
 
@@ -277,6 +288,7 @@ void Character::showInfo()
 	cout << getFirstName() << " " << getLastName() << endl << "Class : " << getClassName() << endl << " HP : " << getHP() << "/" << getHPMax() << "\nEquipped weapon : " << actualWeapon->GetName() << endl;
 }
 
-void Character::die()
+void Character::die(Character &c)
 {
+	c.setIsDead(true);
 }

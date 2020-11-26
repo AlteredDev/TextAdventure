@@ -15,9 +15,9 @@ protected:
 
 public:
 	Spell();
-	Spell(string n);
+	Spell(int vID, string vName);
 
-	virtual float castSpell();
+	virtual float getSpellEffect();
 
 	int getID();
 	void setID(int vID);

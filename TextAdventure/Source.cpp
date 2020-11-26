@@ -25,10 +25,10 @@ void showGroupInv(Inventory Inv, vector<Character> Group) {
 	cout << "\n\nEquipment :\n\n";
 	for (int i = 0; i < Group.size(); i++) {
 		if (Group[i].getActualWeapon() != NULL) {
-			cout << "\t" << Group[i].getCharFirstName() << " " << Group[i].getCharLastName() << " is equipped with a " << Group[i].getActualWeapon()->GetName() << endl;
+			cout << "\t" << Group[i].getFirstName() << " " << Group[i].getLastName() << " is equipped with a " << Group[i].getActualWeapon()->GetName() << endl;
 		}
 		else {
-			cout << "\t" << Group[i].getCharFirstName() << " " << Group[i].getCharLastName() << " is unequipped" << endl;
+			cout << "\t" << Group[i].getFirstName() << " " << Group[i].getLastName() << " is unequipped" << endl;
 		}
 	}
 }
@@ -89,6 +89,10 @@ int main() {
 
 
 	showGroupInv(groupInv, group);
+
+	//Vérifier à chaque tour de jeu si un Character isDead() -->
+	//		SI true : enlever tableau + appel destructeur
+	//		SI false : rien
 
 
 	/*Spell s;

@@ -10,7 +10,7 @@ public:
 	SpellHeal();
 	SpellHeal(Spell *s, float hAmount);
 
-	float castSpell();
+	float getSpellEffect();
 
 	float getHealAmount();
 	void setHealAmount(float hAmount);

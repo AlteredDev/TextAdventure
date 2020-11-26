@@ -8,6 +8,7 @@ class Character : public Person
 {
 private:
 	bool PNJ;
+	bool isDead = false;
 	string className;
 	string weakness;
 	float strength;
@@ -52,9 +53,8 @@ public:
 	float getManaMax();
 	void setManaMax(float vManaMax);
 
-	string getCharFirstName();
-	string getCharLastName();
-
+	bool getIsDead();
+	void setIsDead(bool dead);
 
 	Inventory getInvChar();
 	void setInvChar(Inventory *vInvChar);
@@ -75,12 +75,12 @@ public:
 	//se défendre (ssi Weapon.defense > 0)
 	void defend();
 	//cast un spell S sur la personne p
-	void castSpell(Spell &s, Person &p);
+	void castSpell(Spell &s, Character &c);
 	//montrer l'inventaire actuel du personnage
 	void showInventory();
 	//montrer/rappeller les infos character
 	void showInfo();
 	//mourrir de la mort qui tue
-	void die();
+	void die(Character &c);
 };
 

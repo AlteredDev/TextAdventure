@@ -4,12 +4,11 @@ Spell::Spell()
 {
 }
 
-Spell::Spell(string n):nameSpell(n)
+Spell::Spell(int vID, string vName):id(vID), nameSpell(vName)
 {
 }
 
-
-float Spell::castSpell()
+float Spell::getSpellEffect()
 {
 	return 0.0;
 }
@@ -23,7 +22,6 @@ void Spell::setID(int vID)
 {
 	id = vID;
 }
-
 
 string Spell::getNameSpell()
 {
@@ -44,4 +42,3 @@ void Spell::getManaCostSpell(float mCost)
 {
 	manaCost = mCost;
 }
-

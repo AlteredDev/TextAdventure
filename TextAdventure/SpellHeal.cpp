@@ -8,7 +8,7 @@ SpellHeal::SpellHeal(Spell * s, float hAmount):Spell(*s),healAmount(hAmount)
 {
 }
 
-float SpellHeal::castSpell()
+float SpellHeal::getSpellEffect()
 {
 	return getHealAmount();
 }
