@@ -122,9 +122,9 @@ void Character::setInvChar(Inventory  *vInvChar)
 	invChar = vInvChar;
 }
 
-void Character::equipWeapon()
+void Character::equipWeapon(Inventory* Inv)
 {
-	actualWeapon = getInvChar().equipWeapon();
+	actualWeapon = Inv->equipWeapon();
 	cout << getFirstName() << " " << getLastName() << " is now equipped of a " << actualWeapon->GetName() << ".\n";
 }
 
@@ -261,12 +261,6 @@ void Character::castSpell(Spell &s, Person &p)
 	*/
 	
 }
-
-void Character::showInventory()
-{
-}
-
-
 
 void Character::showInfo()
 {

@@ -84,7 +84,7 @@ int main() {
 	showGroupInv(groupInv, group);
 
 	for (int i = 0; i < group.size(); i++) {
-		group[i].equipWeapon();
+		group[i].equipWeapon(&groupInv);
 	}
 
 
