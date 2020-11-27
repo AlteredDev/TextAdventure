@@ -21,8 +21,9 @@ private:
 	float manaMax;
 
 	Inventory* invChar;
-	Weapon* actualWeapon = NULL;
+	Weapon* actualWeapon = nullptr;
 	Spell spells[3];
+	Potion actualPotion;
 
 public:
 	Character();

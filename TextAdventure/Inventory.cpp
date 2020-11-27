@@ -2,11 +2,12 @@
 
 Weapon* Inventory::equipWeapon()
 {
+	system("cls");
 	cout << "\n\nInventory :\n\n";
 	bool possede = true;
 	int i;
 	for (i = 0; i < invSize; i++) {
-		if (weaponTab[i] == NULL) {
+		if (weaponTab[i] == nullptr) {
 			if (i == 0) {
 				cout << "\tAucune arme possédé";
 				possede = false;
@@ -27,8 +28,8 @@ Weapon* Inventory::equipWeapon()
 		for (i = 0; i < invSize - select; i++) {
 			//cout << 1 << endl;
 			//if (weaponTab[select + i] == NULL) { break; }
-			if (select + i + 1 >= weaponTab.size() || weaponTab[select + i + 1] == NULL) {
-				weaponTab[select + i] = NULL;
+			if (select + i + 1 >= weaponTab.size() || weaponTab[select + i + 1] == nullptr) {
+				weaponTab[select + i] = nullptr;
 				break; 
 			}
 			weaponTab[select + i] = weaponTab[select + i + 1];
@@ -43,7 +44,7 @@ void Inventory::addWeapon(Weapon *newWeapon)
 	bool plein = true;
 	int i;
 	for (i = 0; i < invSize; i++) {
-		if (weaponTab[i] == NULL) {
+		if (weaponTab[i] == nullptr) {
 			plein = false;
 			break;
 		}
@@ -51,7 +52,7 @@ void Inventory::addWeapon(Weapon *newWeapon)
 	if (plein) {
 		int input;
 		system("cls");
-		cout << "\nThe weapon inventory is full, can't add " << newWeapon->GetName() << "\n\nDo you want to throw one away :\tYes(1) No(2)\n";
+		cout << "\nThe weapon inventory is full, can't add " << newWeapon->GetName() << "\n\nDo you want to throw a weapon away :\tYes(1) No(2)\n";
 		cin >> input;
 		if (input == 1) {
 			system("cls");
@@ -84,7 +85,7 @@ void Inventory::addWeapon(Weapon *newWeapon)
 void Inventory::setInvSize(int size)
 {
 	for (int i = 0; i < size; i++) {
-		weaponTab.push_back(NULL);
+		weaponTab.push_back(nullptr);
 	}
 	invSize = size;
 }
@@ -92,4 +93,14 @@ void Inventory::setInvSize(int size)
 vector<Weapon*> Inventory::getWeaponTab()
 {
 	return weaponTab;
+}
+
+void Inventory::setItemTab(Item* newItem)
+{
+	itemTab = newItem;
+}
+
+Item* Inventory::getItemTab()
+{
+	return itemTab;
 }
