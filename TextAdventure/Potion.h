@@ -12,6 +12,7 @@ class Potion
 private:
 	string name;
 	int timeTurn;
+	int initTimeTurn;
 	bool isDamageBoost;
 	float damageBoost;
 	bool isHeal;
@@ -25,6 +26,8 @@ public:
 
 	string getName();
 	int getTimeTurn();
+	void setTimeTurn(int left);
+	int getInitTimeTurn();
 	bool getIsDamageBoost();
 	float getDamageBoost();
 	bool getIsHeal();

@@ -72,6 +72,10 @@ public:
 
 	//equipe l'arme de l'inventaire
 	void equipWeapon(Inventory* Inv);
+	//utilise un item de l'inventaire
+	void useItem(Inventory* Inv);
+	//Vérif si a use potion, si oui donne les effet le temps d'effet de la popo
+	void verifyPotion();
 	//changer la Location (applique des effets au personnage)
 	void changeLocation(Location l);
 	//creation du character (+ class etc...)

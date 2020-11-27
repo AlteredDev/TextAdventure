@@ -4,7 +4,7 @@ Potion::Potion():name(""), timeTurn(0), isDamageBoost(false), damageBoost(0), is
 {
 }
 
-Potion::Potion(string n, int tt, bool idb, float db, bool ih, float h, bool is, float s) : name(n), timeTurn(tt), isDamageBoost(idb), damageBoost(db), isHeal(ih), heal(h), isSpeed(is), speed(s)
+Potion::Potion(string n, int tt, bool idb, float db, bool ih, float h, bool is, float s) : name(n), timeTurn(tt), initTimeTurn(tt), isDamageBoost(idb), damageBoost(db), isHeal(ih), heal(h), isSpeed(is), speed(s)
 {
 }
 
@@ -16,6 +16,16 @@ string Potion::getName()
 int Potion::getTimeTurn()
 {
 	return timeTurn;
+}
+
+void Potion::setTimeTurn(int left)
+{
+	timeTurn = left;
+}
+
+int Potion::getInitTimeTurn()
+{
+	return initTimeTurn;
 }
 
 bool Potion::getIsDamageBoost()
@@ -40,7 +50,7 @@ float Potion::getHeal()
 
 bool Potion::getIsSpeed()
 {
-	return isHeal;
+	return isSpeed;
 }
 
 float Potion::getSpeed()

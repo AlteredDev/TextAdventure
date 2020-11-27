@@ -119,6 +119,57 @@ void Character::equipWeapon(Inventory* Inv)
 	cout << getFirstName() << " " << getLastName() << " is now equipped of a " << actualWeapon->GetName() << ".\n";
 }
 
+void Character::useItem(Inventory* Inv)
+{
+	int output = Inv->getItemTab()->useItem();
+
+	if (output == 0) { cout << "There's no items in the inventory"; }
+
+	if (output == 1) {
+		if (actualPotion.getName() == "") {
+			actualPotion = Inv->getItemTab()->getUsedPotion();
+			cout << getFirstName() << " " << getLastName() << " drank a " << actualPotion.getName() << ".";
+		}
+		else{
+			cout << getFirstName() << " " << getLastName() << " has already a " << actualPotion.getName() << " in use.";
+		}
+	}
+	cout << endl << endl;
+	system("pause");
+}
+
+void Character::verifyPotion()
+{
+	if (actualPotion.getName() != "") {
+		if (actualPotion.getTimeTurn() > 0) {
+			if (actualPotion.getInitTimeTurn() == actualPotion.getTimeTurn()) {
+				if (actualPotion.getIsDamageBoost()) {
+					strength += actualPotion.getDamageBoost();
+				}
+				if (actualPotion.getIsHeal()) {
+					hp += actualPotion.getHeal();
+				}
+				if (actualPotion.getIsSpeed()) {
+					setInitiative(getInitiative() + actualPotion.getSpeed());
+				}
+			}
+			actualPotion.setTimeTurn(actualPotion.getTimeTurn() - 1);
+		}
+		else {
+			actualPotion.getName() = "";
+			if (actualPotion.getIsDamageBoost()) {
+				strength -= actualPotion.getDamageBoost();
+			}
+			if (actualPotion.getIsHeal()) {
+				hp -= actualPotion.getHeal();
+			}
+			if (actualPotion.getIsSpeed()) {
+				setInitiative(getInitiative() - actualPotion.getSpeed());
+			}
+		}
+	}
+}
+
 void Character::setActualWeapon(Weapon *newWeapon)
 {
 	actualWeapon = newWeapon;
@@ -164,7 +215,7 @@ void Character::createCharacter()
 	setLastName(stringInput);
 	cout << "Enter the age :\n";
 	cin >> intInput; 
-	while (cin.fail() || intInput <= 18) {
+	while (cin.fail() || intInput < 18) {
 		cin.clear(); cin.ignore();
 		cout << "Enter an age (18 or greater) :\n";
 		cin.clear();  cin >> intInput;
