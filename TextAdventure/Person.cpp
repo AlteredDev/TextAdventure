@@ -37,3 +37,13 @@ void Person::setAge(int vAge)
 {
 	age = vAge;
 }
+
+float Person::getInitiative()
+{
+	return initiative;
+}
+
+void Person::setInitiative(float vInitiative)
+{
+	initiative = vInitiative;
+}

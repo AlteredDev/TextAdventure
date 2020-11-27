@@ -1,8 +1,15 @@
+#ifndef SPELL_H
+#define SPELL_H
+
+#include "Character.h"
+
+/*
 #pragma once
 #include <iostream>
 #include <string>
 
 using namespace std;
+*/
 
 class Spell // faire des enfants --> je vois pas comment arriver a utiliser enfants sans
 {
@@ -12,6 +19,8 @@ protected:
 	float manaCost;
 	//float damage; // degueu
 	//float healAmount; // degueu
+
+	Character c;
 
 public:
 	Spell();
@@ -29,3 +38,4 @@ public:
 	void getManaCostSpell(float mCost);
 };
 
+#endif // !CHARACTER_H

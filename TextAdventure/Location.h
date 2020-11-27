@@ -1,5 +1,8 @@
 #pragma once
-#include "Character.h"
+#include <iostream>
+#include <string>
+
+using namespace std;
 
 class Location
 {
@@ -9,11 +12,12 @@ private:
 	string nameLocation;
 	string descriptionLocation;
 
-	bool effectLocation;
+	bool hasEffectLocation;
+	string effectLocation;
 
 public:
 	Location();
-	Location(int vID, string vNameLoc, string vDescLoc, bool vEffectLoc);
+	Location(int vID, string vNameLoc, string vDescLoc, bool vHasEffectLoc, string vEffectLoc);
 
 	//Getter/Setter
 	int getIDLocation();
@@ -25,8 +29,11 @@ public:
 	string getDescLocation();
 	void setDescLocation(string vDescLoc);
 
-	bool getEffectLocation();
-	void setEffectLocation(bool vEffectLoc);
+	bool getHasEffectLocation();
+	void setHasEffectLocation(bool vHasEffectLoc);
+
+	string getEffectLocation();
+	void setEffectLocation(string vEffectLoc);
 
 };
 

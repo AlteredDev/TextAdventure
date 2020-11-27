@@ -4,7 +4,7 @@ Location::Location()
 {
 }
 
-Location::Location(int vID, string vNameLoc, string vDescLoc, bool vEffectLoc):idLocation(vID),nameLocation(vNameLoc),descriptionLocation(vDescLoc),effectLocation(vEffectLoc)
+Location::Location(int vID, string vNameLoc, string vDescLoc, bool vHasEffectLoc, string vEffectLoc):idLocation(vID),nameLocation(vNameLoc),descriptionLocation(vDescLoc),hasEffectLocation(vHasEffectLoc), effectLocation(vEffectLoc)
 {
 }
 
@@ -38,12 +38,22 @@ void Location::setDescLocation(string vDescLoc)
 	descriptionLocation = vDescLoc;
 }
 
-bool Location::getEffectLocation()
+string Location::getEffectLocation()
 {
 	return effectLocation;
 }
 
-void Location::setEffectLocation(bool vEffectLoc)
+void Location::setEffectLocation(string vEffectLoc)
 {
 	effectLocation = vEffectLoc;
+}
+
+bool Location::getHasEffectLocation()
+{
+	return hasEffectLocation;
+}
+
+void Location::setHasEffectLocation(bool vHasEffectLoc)
+{
+	hasEffectLocation = vHasEffectLoc;
 }

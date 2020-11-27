@@ -16,7 +16,7 @@ protected:
 	string lastName;
 
 	int age;
-	int initiative;
+	float initiative;
 	//a mettre une classe si on a + idée pour Race
 	//string race;
 
@@ -24,6 +24,7 @@ public:
 	Person();
 	Person(string fName, string lName);
 
+	//getter/setter
 	string getFirstName();
 	void setFirstName(string fName);
 
@@ -33,7 +34,8 @@ public:
 	int getAge();
 	void setAge(int vAge);
 
-	//getter/setter
+	float getInitiative();
+	void setInitiative(float vInitiative);
 
 };
 
