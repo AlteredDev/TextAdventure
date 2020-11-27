@@ -1,6 +1,6 @@
 #include "Character.h"
-#include "SpellHeal.h"
 
+/*
 int RangeIntInput(int min, int max) {
 	int input; cin >> input;
 	while (cin.fail() || input < min || input > max) {
@@ -38,7 +38,35 @@ void showGroupInv(Inventory inv, vector<Character> group) {
 	cout << endl; system("pause");
 }
 
+*/
+
 int main() {
+
+	Character c1(&Person("Jinx","Piltover"),"Paladin",100,100);
+	Character c2(&Person("Patrick", "Oui"), "Paladin", 25, 100);
+	c1.setInitiative(10);
+	c1.setMana(12.0f);
+	c2.setInitiative(5);
+	c2.setMana(12.0f);
+
+	SpellHeal s1("SOIN",0.2f,25);
+	SpellBoost sb1("Initiative", 0.3f, 1.25);
+
+	cout << "debut heal" << endl;
+	c1.spells.push_back(&s1);
+	cout << c2.getHP() << endl;
+	c1.spells[0]->castSpell(&c2);
+	cout << c2.getHP() << endl;
+
+	cout << "debut initiative" << endl;
+	c2.spells.push_back(&sb1);
+	cout << c1.getInitiative() << endl;
+	c2.spells[0]->castSpell(&c1);
+	cout << c2.getInitiative() << endl;
+	
+	return 0;
+	
+	/*
 
 	Weapon w1("Wood Shield", 1, 10, 20);
 	Weapon w2("Wood Sword", 20, 0, 10);
@@ -140,6 +168,6 @@ int main() {
 
 
 
-	return 0;
+	//return 0;
 }
 

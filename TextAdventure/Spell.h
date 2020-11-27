@@ -1,32 +1,25 @@
 #ifndef SPELL_H
 #define SPELL_H
 
-#include "Character.h"
-
-/*
-#pragma once
-#include <iostream>
 #include <string>
-
 using namespace std;
-*/
 
-class Spell // faire des enfants --> je vois pas comment arriver a utiliser enfants sans
+class Character;
+
+class Spell
 {
-protected:
+public:
 	int id;
 	string nameSpell;
 	float manaCost;
-	//float damage; // degueu
-	//float healAmount; // degueu
-
-	Character c;
 
 public:
 	Spell();
-	Spell(int vID, string vName);
+	Spell(string vName, float vManaCost);
 
-	virtual float getSpellEffect();
+	virtual void castSpell(Character* c) = 0;
+
+	bool verifCastSpell(Character* c);
 
 	int getID();
 	void setID(int vID);
@@ -38,4 +31,4 @@ public:
 	void getManaCostSpell(float mCost);
 };
 
-#endif // !CHARACTER_H
+#endif // !SPELL_H

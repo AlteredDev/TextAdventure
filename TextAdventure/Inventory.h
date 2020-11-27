@@ -1,7 +1,5 @@
-#pragma once
-#include <iostream>
-#include <string>
-#include <vector>
+#ifndef INVENTORY_H
+#define INVENTORY_H
 
 #include "Weapon.h"
 #include "Item.h"
@@ -25,3 +23,5 @@ public:
 
 };
 
+
+#endif // !INVENTORY_H

@@ -1,16 +1,23 @@
 #include "Spell.h"
+#include "Character.h"
 
 Spell::Spell()
 {
 }
 
-Spell::Spell(int vID, string vName):id(vID), nameSpell(vName)
+Spell::Spell(string vName, float vManaCost):nameSpell(vName), manaCost(vManaCost)
 {
 }
 
-float Spell::getSpellEffect()
+bool Spell::verifCastSpell(Character * c)
 {
-	return 0.0;
+	if (getManaCostSpell() > c->getMana()) {
+		cout << "You don't have enough mana to cast the spell." << endl;
+		return false;
+	}
+	else {
+		return true;
+	}
 }
 
 int Spell::getID()

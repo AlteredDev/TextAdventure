@@ -1,14 +1,13 @@
-#pragma once
-//mettre tous les include car + haute class
+#ifndef PERSON_H
+#define PERSON_H
+
+#include <windows.h>
 #include <iostream>
 #include <string>
+#include <vector>
 
 using namespace std;
 
-/*
-- nom, prenom , age, initiative, histoire, race
-( get/set
-*/
 class Person
 {
 protected:
@@ -39,3 +38,4 @@ public:
 
 };
 
+#endif // !PERSON_H

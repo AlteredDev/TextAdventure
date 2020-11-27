@@ -1,4 +1,6 @@
-#pragma once
+#ifndef ITEM_H
+#define ITEM_H
+
 #include "Potion.h"
 
 class Item
@@ -11,3 +13,4 @@ public:
 	vector<Potion*> getPotionTab();
 };
 
+#endif // !ITEM_H

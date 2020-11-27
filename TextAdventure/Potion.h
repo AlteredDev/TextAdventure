@@ -1,4 +1,6 @@
-#pragma once
+#ifndef POTION_H
+#define POTION_H
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -31,3 +33,4 @@ public:
 	float getSpeed();
 };
 
+#endif // !POTION_H

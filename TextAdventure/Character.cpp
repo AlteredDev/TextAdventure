@@ -1,21 +1,12 @@
 #include "Character.h"
 
-
-
 Character::Character():Person()
 {
 	className = "";
 	hp = 0;
 	strength = 0;
 	mana = 0;
-	for (int i = 0; i < 4; i++) {
-		//inventory[i].SetName("");
-	}
 	criticPerc = 0;
-	for (int i = 0; i < 3; i++) {
-		spells[i];
-	}
-	float speed = 0;
 }
 
 Character::Character(Person *p, string vClasseName, float vHP, float vHPMax):Person(*p),className(vClasseName),hp(vHP),hpMax(vHPMax)
@@ -138,39 +129,50 @@ Weapon* Character::getActualWeapon()
 	return actualWeapon;
 }
 
-/*
-Spell Character::getSpells(Spell & vSpells)
+// a faire peut etre dans Location ?
+void Character::changeLocation(Location l)
 {
-	return vSpells;
+	if (l.getHasEffectLocation()) {
+		if (l.getEffectLocation() == "Strength--") {
+			setStrength(getStrength() - (getStrength() * 0.1f)); // baisse de 10% force
+		}
+		if (l.getEffectLocation() == "Strength++") {
+			setStrength(getStrength() + (getStrength() * 0.1f)); // augmentation de 10% force
+		}
+		if (l.getEffectLocation() == "Initiative--") {
+			setInitiative(getInitiative() - (getInitiative() * 0.1f)); // baisse de 10% initiative
+		}
+		if (l.getEffectLocation() == "Initiative++") {
+			setInitiative(getInitiative() - (getInitiative() * 0.1f)); // augmentation de 10% initiative
+		}
+		if (l.getEffectLocation() == "HP--") {
+			setHP(getHP() - (getHP() * 0.05f)); // baisse de 5% sante
+		}
+	}
 }
-
-void Character::setSpells(Spell & vSpells)
-{
-}
-*/
 
 void Character::createCharacter()
 {
 	string stringInput;
 	int intInput;
 	system("cls");
-	cout << "New character\n\nEnter the first name :\n";
+	cout << "New character\nEnter the first name :\n";
 	cin >> stringInput;
 	setFirstName(stringInput);
-	cout << "\nEnter the last name :\n";
+	cout << "Enter the last name :\n";
 	cin >> stringInput;
 	setLastName(stringInput);
-	cout << "\nEnter the age :\n";
+	cout << "Enter the age :\n";
 	cin >> intInput; 
-	while (cin.fail() || intInput < 1) {
+	while (cin.fail() || intInput <= 18) {
 		cin.clear(); cin.ignore();
-		cout << "Enter an age between 18 and 99 :\n";
+		cout << "Enter an age (18 or greater) :\n";
 		cin.clear();  cin >> intInput;
 	}
 	setAge(intInput);
 	
 	int numClass;
-	cout << "\nYou have the choice between many classes, Mage(1), Paladin(2) or Warrior(3)\n\nPlease enter the number corresponding to the class you will choose :\n";
+	cout << "\nYou have the choice between many classes, Mage(1), Paladin(2) or Warrior(3)\nPlease enter the number corresponding to the class you will choose :\n";
 	cin.clear();  cin >> numClass;
 	while (cin.fail() || numClass < 1 || numClass > 3) {
 		cin.clear(); cin.ignore();
@@ -209,7 +211,7 @@ void Character::createCharacter()
 	}
 
 
-	cout << "\n\nYou will therefore be " << getFirstName() << " " << getLastName() << ", " << getAge() << " years old, a " << className <<".";
+	cout << "\nYou will therefore be " << getFirstName() << " " << getLastName() << ", " << getAge() << " years old, a " << className <<".";
 	Sleep(000); //delay when creating, so the player can read the summeriz
 }
 
@@ -223,56 +225,6 @@ void Character::defend()
 
 }
 
-void Character::castSpell(Spell &s, Character &c)
-{
-	if (s.getManaCostSpell() > getMana()) {
-		cout << "You don't have enough mana to cast the spell." << endl;
-	}
-	else {
-		cout << "You cast the spell of " << s.getNameSpell() << " on " << c.getFirstName() << " " << c.getLastName() << "." << endl;
-		float val = s.getSpellEffect();
-
-		switch (s.getID())
-		{
-		case 1: // heal
-			if ((c.getHP() + val) >= c.getHPMax()) {
-				c.setHP(c.getHPMax());
-			}
-			else {
-				c.setHP(c.getHP() + val);
-			}
-			cout << c.getFirstName() << " " << c.getLastName() << " has recovered " << val << " HP !" << endl;
-			break;
-		case 2: // boost dmg
-			c.setStrength(c.getStrength() * val);
-			cout << "The strength of " << c.getFirstName() << " " << c.getLastName() << " has been multiplied by " << val << endl;
-			cout << "The strength of " << c.getFirstName() << " " << c.getLastName() << " is now : " << c.getStrength() << endl;
-			break;
-		case 3: // cast le spell --> faire un tick de degat en mode setStatusEffect("Fire");
-			if ((c.getHP() - val) <= 0) {
-				die(c);
-			}
-			else {
-				setHP(getHP() - val);
-			}
-			break;
-		}
-
-	}
-
-	//s.castSpell(c);
-	/*
-	if ((getHP() + getHealAmount()) >= getHPMax) {
-		setHP(c.getHPMax);
-	}
-	else {
-		setHP(getHP() + getHealAmount());
-	}
-
-	*/
-	
-}
-
 void Character::showInfo()
 {
 	/*
@@ -282,7 +234,8 @@ void Character::showInfo()
 	cout << getFirstName() << " " << getLastName() << endl << "Class : " << getClassName() << endl << " HP : " << getHP() << "/" << getHPMax() << "\nEquipped weapon : " << actualWeapon->GetName() << endl;
 }
 
-void Character::die(Character &c)
+void Character::die()
 {
-	c.setIsDead(true);
+	cout << getFirstName() << " " << getLastName() << " is dead." << endl;
+	setIsDead(true);
 }

@@ -1,12 +1,16 @@
-#pragma once
-#include <windows.h>
+#ifndef CHARACTER_H
+#define CHARACTER_H
+
 #include "Person.h"
-#include "Spell.h"
+#include "SpellHeal.h"
+#include "SpellBoost.h"
+#include "SpellMagicBall.h"
 #include "Inventory.h"
+#include "Location.h"
 
 class Character : public Person
 {
-private:
+public:
 	bool PNJ;
 	bool isDead = false;
 	string className;
@@ -22,7 +26,9 @@ private:
 
 	Inventory* invChar;
 	Weapon* actualWeapon = nullptr;
-	Spell spells[3];
+	//Spell spells[3];
+
+	vector<Spell *> spells;
 	Potion actualPotion;
 
 public:
@@ -60,26 +66,24 @@ public:
 	Inventory getInvChar();
 	void setInvChar(Inventory *vInvChar);
 
-	void equipWeapon(Inventory* Inv);
 	void setActualWeapon(Weapon *newWeapon);
 	Weapon* getActualWeapon();
 
-	/*
-	Spell getSpells(Spell &vSpells);
-	void setSpells(Spell &vSpells);
-	*/
 
+	//equipe l'arme de l'inventaire
+	void equipWeapon(Inventory* Inv);
+	//changer la Location (applique des effets au personnage)
+	void changeLocation(Location l);
 	//creation du character (+ class etc...)
 	void createCharacter();
 	//attaquer un ennemi --> attackFailed/AttackSucced
 	void attack(Person &p);
 	//se défendre (ssi Weapon.defense > 0)
 	void defend();
-	//cast un spell S sur la personne p
-	void castSpell(Spell &s, Character &c);
 	//montrer l'inventaire actuel du personnage
 	void showInfo();
 	//mourrir de la mort qui tue
-	void die(Character &c);
+	void die();
 };
 
+#endif // !CHARACTER_H

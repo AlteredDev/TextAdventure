@@ -1,4 +1,6 @@
-#pragma once
+#ifndef LOCATION_H
+#define LOCATION_H
+
 #include <iostream>
 #include <string>
 
@@ -37,3 +39,4 @@ public:
 
 };
 
+#endif // !LOCATION_H

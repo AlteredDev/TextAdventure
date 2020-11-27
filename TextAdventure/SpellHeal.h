@@ -1,4 +1,6 @@
-#pragma once
+#ifndef SPELLHEAL_H
+#define SPELLHEAL_H
+
 #include "Spell.h"
 
 class SpellHeal : public Spell
@@ -8,11 +10,12 @@ private:
 
 public:
 	SpellHeal();
-	SpellHeal(Spell *s, float hAmount);
+	SpellHeal(string vName, float vManaCost, float hAmount);
 
-	float getSpellEffect();
+	void castSpell(Character* c);
 
 	float getHealAmount();
 	void setHealAmount(float hAmount);
 };
 
+#endif // !SPELLHEAL_H

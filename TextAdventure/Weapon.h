@@ -1,6 +1,9 @@
-#pragma once
+#ifndef WEAPON_H
+#define WEAPON_H
+
 #include <iostream>
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -29,3 +32,4 @@ public:
 	void showInfoWeapon();
 };
 
+#endif // !WEAPON_H
