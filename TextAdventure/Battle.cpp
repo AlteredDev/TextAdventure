@@ -12,7 +12,7 @@ int rangeIntInput(int min, int max) {
 
 //Faire une methode inBattle() qui se boucle tant que des gens sont pas morts sinon ca va etre insanement long
 
-bool Battle::inBattle(vector<Character *> allie, vector<Character *> ennemie)
+bool Battle::inBattle(vector<Character *> allie, vector<Character *> ennemie, Inventory inv)
 {
 	vector<Character *> battleCharactersTab;
 	int nbrAllie = 0;
@@ -91,8 +91,31 @@ bool Battle::inBattle(vector<Character *> allie, vector<Character *> ennemie)
 
 						battleCharactersTab[i]->spells[spellSelect]->castSpell(battleCharactersTab[charSelect]);
 					}
-				case 4:
+					break;
 
+				case 4:
+					system("cls");
+					cout << "\nWeapon :\n\n";
+					for (int i = 0; i < inv.getWeaponTab().size(); i++) {
+						if (inv.getWeaponTab()[i] == nullptr) { break; }
+						cout << "\t" << inv.getWeaponTab()[i]->GetName() << endl;
+					}
+
+					cout << "\n\nItems :\n\n";
+					for (int i = 0; i < inv.getItemTab()->getPotionTab().size(); i++) {
+						if (inv.getItemTab()->getPotionTab()[i] == nullptr) { continue; }
+						cout << "\t" << inv.getItemTab()->getPotionTab()[i]->getName() << endl;
+					}
+
+					cout << "\n\nEquipment :\n\n";
+					if (battleCharactersTab[i]->getActualWeapon() != nullptr) {
+						cout << "\t" << battleCharactersTab[i]->getFirstName() << " " << battleCharactersTab[i]->getLastName() << " is equipped with a " << battleCharactersTab[i]->getActualWeapon()->GetName() << endl;
+					}
+					else {
+						cout << "\t" << battleCharactersTab[i]->getFirstName() << " " << battleCharactersTab[i]->getLastName() << " is unequipped" << endl;
+					}
+					cout << endl; system("pause");
+					break;
 				}
 
 
