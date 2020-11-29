@@ -18,6 +18,8 @@ public:
 	string weakness;
 	float strength;
 	float criticPerc;
+	float criticPercMultiplier;
+	float hitPerc;
 
 	float hp;
 	float hpMax;
@@ -49,6 +51,9 @@ public:
 	float getCriticPerc();
 	void setCriticPerc(float vCritPerc);
 
+	float getCriticPercMultiplier();
+	void setCriticPercMultiplier(float vCritPercMultiplier);
+
 	float getHP();
 	void setHP(float vHP);
 
@@ -61,11 +66,17 @@ public:
 	float getManaMax();
 	void setManaMax(float vManaMax);
 
+	float getHitPerc();
+	void setHitPerc(float vHitPerc);
+
 	bool getIsDead();
 	void setIsDead(bool dead);
 
 	bool getIsPNJ();
 	void setIsPNJ(bool vPNJ);
+
+	bool getIsDefending();
+	void setIsDefending(bool vIsDefending);
 
 	Inventory getInvChar();
 	void setInvChar(Inventory *vInvChar);
