@@ -276,17 +276,27 @@ void Character::createCharacter()
 
 
 	cout << "\nYou will therefore be " << getFirstName() << " " << getLastName() << ", " << getAge() << " years old, a " << className <<".";
-	Sleep(000); //delay when creating, so the player can read the summeriz
 }
 
-void Character::attack(Person &p)
+void Character::attack(Character &c)
 {
+	/*
+	Vérif si atk réussi, avec un random bool
+	Vérif si critic fonction, avec un random bool
+	Force perso x dégâts arme + ptit random de bonus atk -10 à 10 x critic - defense de weapon de c (si cible est en train de défendre, après set isDefending de cible à false)
 
+	après atk, vérif si c.hp <= 0, alors die()
+	*/
 }
 
 void Character::defend()
 {
+	/*
+	vérif si actualWeapon.getDefense() > 0, peut défendre
 
+	set isDefending à true
+	si peut défendre, prochaine atk sur ce character aura un malus
+	*/
 }
 
 void Character::showInfo()

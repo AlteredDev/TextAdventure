@@ -13,6 +13,7 @@ class Character : public Person
 public:
 	bool PNJ;
 	bool isDead = false;
+	bool isDefending = false;
 	string className;
 	string weakness;
 	float strength;
@@ -88,7 +89,7 @@ public:
 	//creation du character (+ class etc...)
 	void createCharacter();
 	//attaquer un ennemi --> attackFailed/AttackSucced
-	void attack(Person &p);
+	void attack(Character &c);
 	//se défendre (ssi Weapon.defense > 0)
 	void defend();
 	//montrer l'inventaire actuel du personnage
