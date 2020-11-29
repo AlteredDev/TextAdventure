@@ -1,6 +1,6 @@
 #include "Weapon.h"
 
-Weapon::Weapon():name(""), damage(0), defense(0), rarity(0)
+Weapon::Weapon():name(""), damage(1), defense(1), rarity(0)
 {
 }
 
