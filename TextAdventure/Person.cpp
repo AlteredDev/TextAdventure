@@ -4,7 +4,7 @@ Person::Person():firstName("Jean"),lastName("Jinx"),age(0),initiative(0)
 {
 }
 
-Person::Person(string fName, string lName):firstName(fName),lastName(lName)
+Person::Person(string fName, string lName, float ini):firstName(fName),lastName(lName),initiative(ini)
 {
 }
 

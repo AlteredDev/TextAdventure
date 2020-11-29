@@ -21,7 +21,7 @@ protected:
 
 public:
 	Person();
-	Person(string fName, string lName);
+	Person(string fName, string lName, float ini);
 
 	//getter/setter
 	string getFirstName();

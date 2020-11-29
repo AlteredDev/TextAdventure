@@ -240,6 +240,7 @@ void Character::createCharacter()
 		hp = hpMax;
 		manaMax = 15;
 		mana = manaMax;
+		setInitiative(7);
 		break;
 	case 2:
 		className = "Paladin";
@@ -249,6 +250,7 @@ void Character::createCharacter()
 		hp = hpMax;
 		manaMax = 5;
 		mana = manaMax;
+		setInitiative(13);
 		break;
 	case 3:
 		className = "Warrior";
@@ -258,6 +260,7 @@ void Character::createCharacter()
 		hp = hpMax;
 		manaMax = 0;
 		mana = manaMax;
+		setInitiative(10);
 		break;
 	}
 

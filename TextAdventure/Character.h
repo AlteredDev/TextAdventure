@@ -69,6 +69,10 @@ public:
 	void setActualWeapon(Weapon *newWeapon);
 	Weapon* getActualWeapon();
 
+	bool operator < (Character character) {
+		return (getInitiative() < character.getInitiative());
+	}
+
 
 	//equipe l'arme de l'inventaire
 	void equipWeapon(Inventory* Inv);

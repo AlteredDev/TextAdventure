@@ -56,14 +56,18 @@ int Item::useItem()
 Potion Item::equipPotion(int index)
 {
 	Potion usedPotion = *potionTab[index];
-	potionTab[index] = nullptr;
-
-	for (int i = index; i-1 < potionTab.size(); i++) {
-		if (potionTab[i + 1] == nullptr) {
-			break;
+	for (int i = index; i < potionTab.size(); i++) {
+		if (i + 1 < potionTab.size()) {
+			if (potionTab[i + 1] == nullptr) {
+				potionTab[i] = nullptr;
+				break;
+			}
+			else {
+				potionTab[i] = potionTab[i + 1];
+			}
 		}
 		else {
-			potionTab[i] = potionTab[i + 1];
+			potionTab[i] = nullptr;
 		}
 	}
 	return usedPotion;
