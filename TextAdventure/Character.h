@@ -63,6 +63,9 @@ public:
 	bool getIsDead();
 	void setIsDead(bool dead);
 
+	bool getIsPNJ();
+	void setIsPNJ(bool vPNJ);
+
 	Inventory getInvChar();
 	void setInvChar(Inventory *vInvChar);
 

@@ -103,6 +103,16 @@ void Character::setIsDead(bool dead)
 	isDead = dead;
 }
 
+bool Character::getIsPNJ()
+{
+	return PNJ;
+}
+
+void Character::setIsPNJ(bool vPNJ)
+{
+	PNJ = vPNJ;
+}
+
 Inventory Character::getInvChar()
 {
 	return *invChar;
