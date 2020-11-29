@@ -48,7 +48,7 @@ bool Battle::inBattle(vector<Character *> allie, vector<Character *> ennemie)
 					}
 				}
 				else {
-					cout << "What do you want to do ?" << endl;
+					cout << "What do you want to do :" << endl;
 					cout << "[1] Attack" << endl;
 					cout << "[2] Defend" << endl;
 					cout << "[3] Cast a spell" << endl;
@@ -58,14 +58,43 @@ bool Battle::inBattle(vector<Character *> allie, vector<Character *> ennemie)
 
 				switch (intInput) {
 				case 1:
-					cout << "Who would you want to attack ?" << endl;
+					cout << "\nWho would you want to attack :\n\n";
 					//je pense faut rajouter un ID pour la selection du perso a attaquer
 					for (int a = 0; a < ennemie.size(); a++) {
 						cout << ennemie[a]->getFirstName() << " " << ennemie[a]->getLastName() << " (" << a << ")" << endl;
 					}
 					intInput = rangeIntInput(0, ennemie.size());
 					battleCharactersTab[i]->attack(*ennemie[intInput]);
+					break;
+
+				case 2:
+					battleCharactersTab[i]->defend();
+					break;
+
+				case 3:
+					if (battleCharactersTab[i]->spells[0] == nullptr) {
+						cout << battleCharactersTab[i]->getFirstName() << " " << battleCharactersTab[i]->getLastName() << "\n do not have any spells...\n";
+						system("pause"); break;
+					}
+					else {
+						cout << "\nWhat spell do you want to cast :\n\n";
+						for (int a = 0; a < battleCharactersTab[i]->spells.size(); a++) {
+							cout << battleCharactersTab[i]->spells[a]->getNameSpell() << " (" << a << ")\n";
+						}
+						int spellSelect = rangeIntInput(0, battleCharactersTab[i]->spells.size());
+
+						cout << "\nSelect the aimed character :\n\n";
+						for (int a = 0; a < battleCharactersTab.size(); a++) {
+							cout << battleCharactersTab[a]->getFirstName() << " " << battleCharactersTab[a]->getLastName() << " (" << a << ")\n";
+						}
+						int charSelect = rangeIntInput(0, battleCharactersTab.size());
+
+						battleCharactersTab[i]->spells[spellSelect]->castSpell(battleCharactersTab[charSelect]);
+					}
+				case 4:
+
 				}
+
 
 				for (int a = 0; a < battleCharactersTab.size(); a++) {
 					if (battleCharactersTab[a]->getIsDead()) {
