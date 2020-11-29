@@ -8,6 +8,6 @@ class Battle
 public:
 
 
-	void startBattle(vector<Character *> allie, vector<Character *> ennemie);
+	bool inBattle(vector<Character *> allie, vector<Character *> ennemie);
 };
 
