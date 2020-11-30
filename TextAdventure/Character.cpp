@@ -53,6 +53,16 @@ void Character::setCriticPerc(float vCritPerc)
 	criticPerc = vCritPerc;
 }
 
+float Character::getCriticPercMultiplier()
+{
+	return criticPercMultiplier;
+}
+
+void Character::setCriticPercMultiplier(float vCritPercMultiplier)
+{
+	criticPercMultiplier = vCritPercMultiplier;
+}
+
 float Character::getHP()
 {
 	return hp;
@@ -93,6 +103,16 @@ void Character::setManaMax(float vManaMax)
 	manaMax = vManaMax;
 }
 
+float Character::getHitPerc()
+{
+	return hitPerc;
+}
+
+void Character::setHitPerc(float vHitPerc)
+{
+	hitPerc = vHitPerc;
+}
+
 bool Character::getIsDead()
 {
 	return isDead;
@@ -111,6 +131,16 @@ bool Character::getIsPNJ()
 void Character::setIsPNJ(bool vPNJ)
 {
 	PNJ = vPNJ;
+}
+
+bool Character::getIsDefending()
+{
+	return isDefending;
+}
+
+void Character::setIsDefending(bool vIsDefending)
+{
+	isDefending = vIsDefending;
 }
 
 Inventory Character::getInvChar()
@@ -243,60 +273,90 @@ void Character::createCharacter()
 	switch (numClass)
 	{
 	case 1:
-		className = "Mage";
-		strength = 5;
-		criticPerc = 0.7;
-		hpMax = 80;
-		hp = hpMax;
-		manaMax = 15;
-		mana = manaMax;
-		setInitiative(7);
+		setClassName("Mage");
+		setStrength(15.0f);
+		setCriticPerc(60.0f);
+		setCriticPercMultiplier(2.0f);
+		setHitPerc(0.80f);
+		setHPMax(150.0f);
+		setHP(getHPMax());
+		setManaMax(60.0f);
+		setMana(getMana());
+		setInitiative(7.0f);
 		break;
 	case 2:
-		className = "Paladin";
-		strength = 10;
-		criticPerc = 0.5;
-		hpMax = 90;
-		hp = hpMax;
-		manaMax = 5;
-		mana = manaMax;
-		setInitiative(13);
+		setClassName("Paladin");
+		setStrength(10.0f);
+		setCriticPerc(40.0f);
+		setCriticPercMultiplier(1.25f);
+		setHitPerc(0.75f);
+		setHPMax(300.0f);
+		setHP(getHPMax());
+		setManaMax(20.0f);
+		setMana(getMana());
+		setInitiative(13.0f);
 		break;
 	case 3:
-		className = "Warrior";
-		strength = 15;
-		criticPerc = 0.3;
-		hpMax = 95;
-		hp = hpMax;
-		manaMax = 0;
-		mana = manaMax;
-		setInitiative(10);
+		setClassName("Warrior");
+		setStrength(12.0f);
+		setCriticPerc(40.0f);
+		setCriticPercMultiplier(1.75f);
+		setHitPerc(0.80f);
+		setHPMax(225.0f);
+		setHP(getHPMax());
+		setManaMax(0.0f);
+		setMana(getMana());
+		setInitiative(10.0f);
 		break;
 	}
-
 
 	cout << "\nYou will therefore be " << getFirstName() << " " << getLastName() << ", " << getAge() << " years old, a " << className <<".";
 }
 
+/*
+Vérif si atk réussi, avec un random bool
+Vérif si critic fonction, avec un random bool
+Force perso x dégâts arme + ptit random de bonus atk -10 à 10 x critic - defense de weapon de c (si cible est en train de défendre, après set isDefending de cible à false)
+
+après atk, vérif si c.hp <= 0, alors die()
+*/
 void Character::attack(Character &c)
 {
-	/*
-	Vérif si atk réussi, avec un random bool
-	Vérif si critic fonction, avec un random bool
-	Force perso x dégâts arme + ptit random de bonus atk -10 à 10 x critic - defense de weapon de c (si cible est en train de défendre, après set isDefending de cible à false)
+	srand(time(NULL));
+	int randAttack = rand() % 20 + (-10); // random entre -10 et 10
+	int randHit = (rand() % 100);
+	randHit /= 100;
+	int randCrit = (rand() % 100);
+	randCrit /= 100;
 
-	après atk, vérif si c.hp <= 0, alors die()
-	*/
+	float dmg = (getStrength() * getActualWeapon()->GetDamage()) + randAttack;
+
+	if (randHit <= getHitPerc()) {
+		if (randCrit <= getCriticPerc()) {
+			dmg *= getCriticPercMultiplier();
+		}
+		if (c.getIsDefending()) {
+			dmg -= c.getActualWeapon()->GetDefense();
+		}
+		c.setHP(c.getHP() - dmg);
+		if (c.getHP() <= 0) {
+			c.die();
+		}
+	}
+	else {
+		cout << getFirstName() << " " << getLastName() << " failed the attack on " << c.getFirstName() << " " << c.getLastName() << "." << endl;
+	}
+
 }
 
+/*
+vérif si actualWeapon.getDefense() > 0, peut défendre
+*/
 void Character::defend()
 {
-	/*
-	vérif si actualWeapon.getDefense() > 0, peut défendre
-
-	set isDefending à true
-	si peut défendre, prochaine atk sur ce character aura un malus
-	*/
+	if (getActualWeapon()->GetDefense() > 0) {
+		setIsDefending(true);
+	}
 }
 
 void Character::showInfo()
