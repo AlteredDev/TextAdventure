@@ -35,16 +35,18 @@ bool Battle::inBattle(vector<Character*> allie, vector<Character*> ennemie, Inve
 		for (int i = 0; i < battleCharactersTab.size(); i++) {
 			system("cls");
 			cout << "---------------------------------------------------------------------------------\n";
-			cout << "It is " << battleCharactersTab[i]->getFirstName() << " " << battleCharactersTab[i]->getLastName() << "'s turn\tHP = " << battleCharactersTab[i]->getHP() << "/" << battleCharactersTab[i]->getHPMax() << endl;
 
 			if (battleCharactersTab[i] != nullptr) {
 
+				cout << "It is " << battleCharactersTab[i]->getFirstName() << " " << battleCharactersTab[i]->getLastName() << "'s turn\tHP = " << battleCharactersTab[i]->getHP() << "/" << battleCharactersTab[i]->getHPMax() << endl;
+				cout << "\t\tMana = " << battleCharactersTab[i]->getMana() << "/" << battleCharactersTab[i]->getManaMax() << endl;
 				//boucler a partir d'ici (faire une autre fonction recursive jusqu'a que allie.dead ou ennemie.dead
 				if (battleCharactersTab[i]->getIsPNJ()) {
-					for (Character* c : battleCharactersTab) {
-						if (!c->getIsPNJ()) {
-							battleCharactersTab[i]->attack(c);
-						}
+					for (int a = 0; a < allie.size(); a++) {
+						if (allie[a] == nullptr) { continue; }
+						battleCharactersTab[i]->attack(allie[a]);
+						cout << endl;
+						break;
 					}
 					system("pause");
 				}
@@ -60,7 +62,7 @@ bool Battle::inBattle(vector<Character*> allie, vector<Character*> ennemie, Inve
 							cout << "\nWho would you want to attack :\n\n";
 							//je pense faut rajouter un ID pour la selection du perso a attaquer
 							for (int a = 0; a < ennemie.size(); a++) {
-								cout << ennemie[a]->getFirstName() << " " << ennemie[a]->getLastName() << " (" << a << ")" << endl;
+								cout << ennemie[a]->getFirstName() << " " << ennemie[a]->getLastName() << " [" << a << "]" << endl;
 							}
 							intInput = rangeIntInput(0, ennemie.size());
 							battleCharactersTab[i]->attack(ennemie[intInput]);
@@ -80,15 +82,19 @@ bool Battle::inBattle(vector<Character*> allie, vector<Character*> ennemie, Inve
 							else {
 								cout << "\nWhat spell do you want to cast :\n\n";
 								for (int a = 0; a < battleCharactersTab[i]->spells.size(); a++) {
-									cout << battleCharactersTab[i]->spells[a]->getNameSpell() << " (" << a << ")\n";
+									cout << battleCharactersTab[i]->spells[a]->getNameSpell() << " [" << a << "]\n";
 								}
 								int spellSelect = rangeIntInput(0, battleCharactersTab[i]->spells.size());
 
 								cout << "\nSelect the aimed character :\n\n";
 								for (int a = 0; a < battleCharactersTab.size(); a++) {
-									cout << battleCharactersTab[a]->getFirstName() << " " << battleCharactersTab[a]->getLastName() << " (" << a << ")\n";
+									cout << battleCharactersTab[a]->getFirstName() << " " << battleCharactersTab[a]->getLastName() << " [" << a << "]\n";
 								}
 								int charSelect = rangeIntInput(0, battleCharactersTab.size());
+
+
+								cout << battleCharactersTab[charSelect]->getMana() << "/" << battleCharactersTab[charSelect]->getManaMax() << endl;
+								system("pause");
 
 								battleCharactersTab[i]->spells[spellSelect]->castSpell(battleCharactersTab[charSelect]);
 								hadAction = true;
