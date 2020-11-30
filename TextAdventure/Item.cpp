@@ -30,7 +30,7 @@ int Item::useItem()
 			continue;
 		}
 		else {
-			cout << potionTab[i]->getName() << " (" << i << ")\n";
+			cout << potionTab[i]->getName() << " [" << i << "]\n";
 			possede = true;
 		}
 	}

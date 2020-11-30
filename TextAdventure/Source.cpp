@@ -116,17 +116,9 @@ int main() {
 			continue;
 		}
 	}
-
-	showGroupInv(groupInv, group);
 	groupInv.getItemTab()->addPotion(&po1);
 	groupInv.getItemTab()->addPotion(&po2);
 	groupInv.getItemTab()->addPotion(&po3);
-
-	for (int i = 0; i < group.size(); i++) {
-		group[i]->equipWeapon(&groupInv);
-	}
-
-	showGroupInv(groupInv, group);
 
 	Battle b1;
 	b1.inBattle(group, ennemies, groupInv);
