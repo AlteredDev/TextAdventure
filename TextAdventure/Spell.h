@@ -19,7 +19,7 @@ public:
 
 	virtual void castSpell(Character* c) = 0;
 
-	bool verifCastSpell(Character* c);
+	//bool verifCastSpell(Character* c);
 
 	int getID();
 	void setID(int vID);

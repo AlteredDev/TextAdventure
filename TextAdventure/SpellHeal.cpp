@@ -11,16 +11,14 @@ SpellHeal::SpellHeal(string vName, float vManaCost, float hAmount):Spell(vName, 
 
 void SpellHeal::castSpell(Character * c)
 {
-	if (verifCastSpell(c)) {
-		cout << "You cast the spell : " << getNameSpell() << " on " << c->getFirstName() << " " << c->getLastName() << "." << endl;
-		if ((c->getHP() + healAmount) >= c->getHPMax()) {
-			c->setHP(c->getHPMax());
-		}
-		else {
-			c->setHP(c->getHP() + healAmount);
-		}
-		cout << c->getFirstName() << " " << c->getLastName() << " has recovered " << healAmount << " HP !" << endl;
+	cout << "You cast the spell : " << getNameSpell() << " on " << c->getFirstName() << " " << c->getLastName() << "." << endl;
+	if ((c->getHP() + healAmount) >= c->getHPMax()) {
+		c->setHP(c->getHPMax());
 	}
+	else {
+		c->setHP(c->getHP() + healAmount);
+	}
+	cout << c->getFirstName() << " " << c->getLastName() << " has recovered " << healAmount << " HP !" << endl;
 }
 
 float SpellHeal::getHealAmount()
