@@ -1,10 +1,10 @@
 #include "Person.h"
 
-Person::Person():firstName("Jean"),lastName("Jinx"),age(0),initiative(0)
+Person::Person():firstName(""),lastName(""),age(0),initiative(0)
 {
 }
 
-Person::Person(string fName, string lName, float ini):firstName(fName),lastName(lName),initiative(ini)
+Person::Person(string fName, string lName, int vAge, float vIni):firstName(fName),lastName(lName),age(vAge),initiative(vIni)
 {
 }
 

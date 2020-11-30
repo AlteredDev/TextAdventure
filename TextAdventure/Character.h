@@ -16,6 +16,7 @@ public:
 	bool isDefending = false;
 	string className;
 	string weakness;
+	string statusEffect;
 	float strength;
 	float criticPerc;
 	float criticPercMultiplier;
@@ -36,7 +37,7 @@ public:
 
 public:
 	Character();
-	Character(Person *p, string vClasseName, float vHP, float vHPMax);
+	Character(Person *p, bool vPNJ, bool vIsDead, bool vIsDefending, string vClassName, string vWeakness, string vStatusEffect, float vStrength, float vCriticPerc, float vCriticPercMultiplier, float vHitPerc, float vHP, float vHPMax, float vMana, float vManaMax);
 
 	//Setter/Getter
 	string getClassName();
@@ -44,6 +45,9 @@ public:
 
 	string getWeakness();
 	void setWeakness(string vWeakness);
+
+	string getStatusEffect();
+	void setStatusEffect(string vStatusEffect);
 
 	float getStrength();
 	void setStrength(float vStrength);
@@ -100,7 +104,7 @@ public:
 	//creation du character (+ class etc...)
 	void createCharacter();
 	//attaquer un ennemi --> attackFailed/AttackSucced
-	void attack(Character &c);
+	void attack(Character *c);
 	//se défendre (ssi Weapon.defense > 0)
 	void defend();
 	//montrer l'inventaire actuel du personnage

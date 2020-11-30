@@ -1,15 +1,10 @@
 #include "Character.h"
 
-Character::Character():Person()
+Character::Character():Person(),className(""),hp(0.0f),strength(0.0f),mana(0.0f),criticPerc(0.0f)
 {
-	className = "";
-	hp = 0;
-	strength = 0;
-	mana = 0;
-	criticPerc = 0;
 }
 
-Character::Character(Person *p, string vClasseName, float vHP, float vHPMax):Person(*p),className(vClasseName),hp(vHP),hpMax(vHPMax)
+Character::Character(Person * p, bool vPNJ, bool vIsDead, bool vIsDefending, string vClassName, string vWeakness, string vStatusEffect, float vStrength, float vCriticPerc, float vCriticPercMultiplier, float vHitPerc, float vHP, float vHPMax, float vMana, float vManaMax):Person(*p), PNJ(vPNJ), isDead(vIsDead), isDefending(vIsDefending), className(vClassName), weakness(vWeakness), statusEffect(vStatusEffect), strength(vStrength), criticPerc(vCriticPerc), criticPercMultiplier(vCriticPercMultiplier), hitPerc(vHitPerc), hp(vHP), hpMax(vHPMax), mana(vMana), manaMax(vManaMax)
 {
 }
 
@@ -26,6 +21,16 @@ void Character::setClassName(string vClassName)
 string Character::getWeakness()
 {
 	return weakness;
+}
+
+void Character::setStatusEffect(string vStatusEffect)
+{
+	statusEffect = vStatusEffect;
+}
+
+string Character::getStatusEffect()
+{
+	return statusEffect;
 }
 
 void Character::setWeakness(string vWeakness)
@@ -311,7 +316,6 @@ void Character::createCharacter()
 	}
 
 	cout << "\n\nYou will therefore be " << getFirstName() << " " << getLastName() << ", " << getAge() << " years old, a " << className <<".\n";
-	system("pause");
 }
 
 /*
@@ -321,13 +325,13 @@ Force perso x dégâts arme + ptit random de bonus atk -10 à 10 x critic - defense
 
 après atk, vérif si c.hp <= 0, alors die()
 */
-void Character::attack(Character &c)
+void Character::attack(Character *c)
 {
 	srand(time(NULL));
 	int randAttack = rand() % 20 + (-10); // random entre -10 et 10
-	int randHit = (rand() % 100);
+	float randHit = (rand() % 100);
 	randHit /= 100;
-	int randCrit = (rand() % 100);
+	float randCrit = (rand() % 100);
 	randCrit /= 100;
 
 	float dmg = (getStrength() * getActualWeapon()->GetDamage()) + randAttack;
@@ -336,16 +340,16 @@ void Character::attack(Character &c)
 		if (randCrit <= getCriticPerc()) {
 			dmg *= getCriticPercMultiplier();
 		}
-		if (c.getIsDefending()) {
-			dmg -= c.getActualWeapon()->GetDefense();
+		if (c->getIsDefending()) {
+			dmg -= c->getActualWeapon()->GetDefense();
 		}
-		c.setHP(c.getHP() - dmg);
-		if (c.getHP() <= 0) {
-			c.die();
+		c->setHP(c->getHP() - dmg);
+		if (c->getHP() <= 0) {
+			c->die();
 		}
 	}
 	else {
-		cout << getFirstName() << " " << getLastName() << " failed the attack on " << c.getFirstName() << " " << c.getLastName() << "." << endl;
+		cout << getFirstName() << " " << getLastName() << " failed the attack on " << c->getFirstName() << " " << c->getLastName() << "." << endl;
 	}
 
 }
@@ -362,11 +366,7 @@ void Character::defend()
 
 void Character::showInfo()
 {
-	/*
-	cout << getFirstName() << " " << getLastName() << endl;
-	cout << getAge() << " ans";
-	*/
-	cout << getFirstName() << " " << getLastName() << endl << "Class : " << getClassName() << endl << " HP : " << getHP() << "/" << getHPMax() << "\nEquipped weapon : " << actualWeapon->GetName() << endl;
+	cout << getFirstName() << " " << getLastName() << endl << "Class : " << getClassName() << endl << "HP : " << getHP() << "/" << getHPMax() << endl << "Status Effect : " << getStatusEffect() << endl << "Equipped weapon : " << actualWeapon->GetName() << endl;
 }
 
 void Character::die()
