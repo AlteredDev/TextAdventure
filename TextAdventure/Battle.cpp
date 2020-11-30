@@ -53,7 +53,7 @@ bool Battle::inBattle(vector<Character*> allie, vector<Character*> ennemie, Inve
 				}
 				else {
 					bool hadAction = false;
-					while (!hadAction){
+					while (!hadAction) {
 						cout << "\n\n\nWhat do you want to do :\n\n[1] Attack\n[2] Defend\n[3] Cast a spell\n[4] Show your inventory\n\n---------------------------------------------------------------------------------\n";
 
 						int intInput = rangeIntInput(1, 4);
