@@ -111,6 +111,8 @@ public:
 	void showInfo();
 	//mourrir de la mort qui tue
 	void die();
+	//cast un spell + verifs
+	bool verifyManaForSpell(Spell *s);
 };
 
 #endif // !CHARACTER_H

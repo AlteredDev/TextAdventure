@@ -375,3 +375,14 @@ void Character::die()
 	cout << getFirstName() << " " << getLastName() << " is dead." << endl;
 	setIsDead(true);
 }
+
+bool Character::verifyManaForSpell(Spell *s)
+{
+	if (s->getManaCostSpell() > getMana()) {
+		cout << "You don't have enough mana to cast the spell." << endl;
+		return false;
+	}
+	else {
+		return true;
+	}
+}

@@ -9,6 +9,7 @@ Spell::Spell(string vName, float vManaCost):nameSpell(vName), manaCost(vManaCost
 {
 }
 
+/*
 bool Spell::verifCastSpell(Character * c)
 {
 	if (getManaCostSpell() > c->getMana()) {
@@ -19,6 +20,7 @@ bool Spell::verifCastSpell(Character * c)
 		return true;
 	}
 }
+*/
 
 int Spell::getID()
 {
