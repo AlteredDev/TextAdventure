@@ -37,6 +37,7 @@ bool Battle::inBattle(vector<Character*> allie, vector<Character*> ennemie, Inve
 			cout << "---------------------------------------------------------------------------------\n";
 
 			if (battleCharactersTab[i] != nullptr) {
+				battleCharactersTab[i]->verifyPotion();
 
 				cout << "It is " << battleCharactersTab[i]->getFirstName() << " " << battleCharactersTab[i]->getLastName() << "'s turn\tHP = " << battleCharactersTab[i]->getHP() << "/" << battleCharactersTab[i]->getHPMax() << endl;
 				cout << "\t\tMana = " << battleCharactersTab[i]->getMana() << "/" << battleCharactersTab[i]->getManaMax() << endl;
