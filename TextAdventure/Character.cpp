@@ -252,7 +252,8 @@ void Character::createCharacter()
 	string stringInput;
 	int intInput;
 	system("cls");
-	cout << "New character\nEnter the first name :\n";
+	cout << "\tNEW CHARACTER "<< endl;
+	cout << "\nEnter the first name :\n" << endl;
 	cin >> stringInput;
 	setFirstName(stringInput);
 	cout << "Enter the last name :\n";
@@ -268,7 +269,7 @@ void Character::createCharacter()
 	setAge(intInput);
 	
 	int numClass;
-	cout << "\nYou have the choice between many classes, Mage(1), Paladin(2) or Warrior(3)\nPlease enter the number corresponding to the class you will choose :\n";
+	cout << "\nYou have the choice between many classes, Mage[1], Paladin[2] or Warrior[3]\nPlease enter the number corresponding to the class you will choose :\n";
 	cin.clear();  cin >> numClass;
 	while (cin.fail() || numClass < 1 || numClass > 3) {
 		cin.clear(); cin.ignore();
@@ -280,37 +281,37 @@ void Character::createCharacter()
 	case 1:
 		setClassName("Mage");
 		setStrength(15.0f);
-		setCriticPerc(60.0f);
+		setCriticPerc(0.60f);
 		setCriticPercMultiplier(2.0f);
 		setHitPerc(0.80f);
 		setHPMax(150.0f);
 		setHP(getHPMax());
 		setManaMax(60.0f);
-		setMana(getMana());
+		setMana(getManaMax());
 		setInitiative(7.0f);
 		break;
 	case 2:
 		setClassName("Paladin");
 		setStrength(10.0f);
-		setCriticPerc(40.0f);
+		setCriticPerc(0.40f);
 		setCriticPercMultiplier(1.25f);
 		setHitPerc(0.75f);
 		setHPMax(300.0f);
 		setHP(getHPMax());
 		setManaMax(20.0f);
-		setMana(getMana());
+		setMana(getManaMax());
 		setInitiative(13.0f);
 		break;
 	case 3:
 		setClassName("Warrior");
 		setStrength(12.0f);
-		setCriticPerc(40.0f);
+		setCriticPerc(0.40f);
 		setCriticPercMultiplier(1.75f);
 		setHitPerc(0.80f);
 		setHPMax(225.0f);
 		setHP(getHPMax());
 		setManaMax(0.0f);
-		setMana(getMana());
+		setMana(getManaMax());
 		setInitiative(10.0f);
 		break;
 	}

@@ -37,91 +37,166 @@ void showGroupInv(Inventory inv, vector<Character*> group) {
 	cout << endl; system("pause");
 }
 
-
 int main() {
 
-	Character c1(&Person("Jinx","Piltover", 10),"Paladin",100,100);
-	Character c2(&Person("Patrick", "Oui", 5), "Paladin", 25, 100);
-	c1.setMana(12.0f);
-	c2.setMana(12.0f);
+	Inventory groupInv;
+	Item groupItem;
+	groupInv.setItemTab(&groupItem); //bind les Item à l'inv de group
 
-	SpellHeal s1("SOIN",0.2f,25);
-	SpellBoost sb1("Initiative", 0.3f, 1.25);
+	Weapon w1("Wood Shield", 3, 25, "Common");
+	Weapon w2("Wood Sword", 20, 1, "Common");
+	Weapon w3("Wizard Stick", 15, 1, "Common");
+	Weapon w4("Bad Spear", 12, 1, "Common");
+	Weapon w5("Spiked Shield", 5, 15, "Common");
 
-	cout << "debut heal" << endl;
+	Character c1(&Person("Jinx", "Piltover", 23, 18.0f), false, false, false, "Mage", "Fed Yasuo", "Beauty Crime", 19.0f, 0.75f, 1.25f, 0.25f, 300.0f, 525.0f, 120.0f, 120.0f);
+	Character c2(&Person("Gragas", "Grobidou", 30, 12.0f), false, false, false, "Warrior", "Alcohol", "Grassouillet", 15.0f, 0.75f, 1.25f, 0.25f, 725.0f, 725.0f, 25.0f, 25.0f);
+	Character c3(&Person("OTPZed", "RQFlash", 30, 12.0f), false, false, false, "Warrior", "Light", "Shadows", 15.0f, 0.75f, 1.25f, 0.25f, 725.0f, 725.0f, 25.0f, 25.0f);
+	Character c4(&Person("NeekoNii", "Lovenida", 21, 12.0f), false, false, false, "Paladin", "Alcohol", "Grassouillet", 11.0f, 0.75f, 1.25f, 0.25f, 880.0f, 880.0f, 75.0f, 75.0f);
+	vector<Character*> starterPack;
+	starterPack.push_back(&c1);
+	starterPack.push_back(&c2);
+	starterPack.push_back(&c3);
+	starterPack.push_back(&c4);
+
+
+	SpellHeal s1("Soin faible", 150.0f, 200.0f);
+	//SpellBoost sb1("Initiative", 0.3f, 1.25);
+
+	cout << c1.getHP() << endl;
 	c1.spells.push_back(&s1);
-	cout << c2.getHP() << endl;
-	c1.spells[0]->castSpell(&c2);
-	cout << c2.getHP() << endl;
+	c1.spells[0]->castSpell(&c1);
+	cout << c1.getHP() << endl;
 
-	cout << "debut initiative" << endl;
-	c2.spells.push_back(&sb1);
-	cout << c1.getInitiative() << endl;
-	c2.spells[0]->castSpell(&c1);
-	cout << c2.getInitiative() << endl;
-	
 
-	Weapon w1("Wood Shield", 1, 10, 20);
-	Weapon w2("Wood Sword", 20, 0, 10);
-	Weapon w3("Wizard Stick", 5, 0, 30);
-	Weapon w4("Bad Spear", 15, 0, 5);
-	Weapon w5("Spiked Shield", 5, 7, 35);
 
 	Potion po1("Speed Potion", 2, false, 0, false, 0, true, 2);
 	Potion po2("Health Potion", 1, false, 0, true, 5, false, 0);
 	Potion po3("Strength Potion", 3, true, 2, false, 0, false, 0);
 
 	vector<Character*> group;
-	Inventory groupInv;
-	Item groupItem;
-	groupInv.setItemTab(&groupItem); //bind les Item à l'inv de group
-
 	vector<Character*> ennemies;
+
+	system("pause");
+
+	/*
+
+	c1.equipWeapon(&groupInv);
+
+	cout << c2.getHP() << endl;
+	c1.attack(&c2);
+	cout << c2.getHP() << endl;
+
+	c1.spells[0]->castSpell(&c2);
+	cout << c2.getHP() << endl;
+	*/
 
 	int intInput;
 
 	//Intro
-	cout << "\n\tWelcome, young adventurer, to TextAdventure!\n\nYou are going to start a whole new adventure.\nWould you like to create a character (1) or use an already created character (2) :\n";
+	cout << "Welcome, young adventurer, to TextAdventure!" << endl;
+	cout << "You are going to start a whole new adventure.\nWould you like to create a character[1] or use an already created character[2] :\n" << endl;
 	intInput = RangeIntInput(1, 2);
 
+	if (intInput == 1) {
+		cout << "\nHow many character do you want to create (1 min - 4 max) :\n";
+		intInput = RangeIntInput(1, 4);
 
-	cout << "\nHow many characater do you want to create (1 min - 4 max) :\n";
-	intInput = RangeIntInput(1, 4);
+		vector<Character> temp;
 
+		for (int i = 0; i < intInput; i++) {
+			Character newCharacter;
+			temp.push_back(newCharacter);
+			temp[i].createCharacter();
+			temp[i].setInvChar(&groupInv);
+			group.push_back(&temp[i]);
+		}
 
-	vector<Character> temp;
-
-	for (int i = 0; i < intInput; i++) {
+		groupInv.setInvSize(group.size() * 4); //set inv size (only for the weapons)
 		system("cls");
-		Character newCharacter;
-		temp.push_back(newCharacter);
-		temp[i].createCharacter();
-		temp[i].setInvChar(&groupInv);
-		group.push_back(&temp[i]);
+		for (int i = 0; i < group.size(); i++) {
+			if (group[i]->getClassName() == "Mage") {
+				groupInv.addWeapon(&w3);
+				continue;
+			}
+			else if (group[i]->getClassName() == "Paladin") {
+				groupInv.addWeapon(&w4);
+				continue;
+			}
+			else if (group[i]->getClassName() == "Warrior") {
+				groupInv.addWeapon(&w2);
+				continue;
+			}
+		}
+	}
+	else if (intInput == 2) {
+		cout << "\nHow many character do you want to play (1 min - 4 max) :\n";
+		intInput = RangeIntInput(1, 4);
+
+		groupInv.setInvSize(starterPack.size() * 4); //set inv size (only for the weapons)
+		for (int i = 0; i < starterPack.size(); i++) {
+			if (starterPack[i]->getClassName() == "Mage") {
+				groupInv.addWeapon(&w3);
+				starterPack[i]->setActualWeapon(&w3);
+				continue;
+			}
+			else if (starterPack[i]->getClassName() == "Paladin") {
+				groupInv.addWeapon(&w4);
+				starterPack[i]->setActualWeapon(&w4);
+				continue;
+			}
+			else if (starterPack[i]->getClassName() == "Warrior") {
+				groupInv.addWeapon(&w2);
+				starterPack[i]->setActualWeapon(&w2);
+				continue;
+			}
+		}
+
+		//cout << starterPack.size();
+		for (int j = 0; j < 4; j++) {
+			cout << " [" << j << "]" << endl;
+			//cout << starterPack[j]->getFirstName() << endl;
+			starterPack[j]->showInfo();
+		}
+		vector<Character*> starterPackTemp;
+		starterPackTemp = starterPack;
+
+		int intInputCharacter;
+
+		for (int i = 0; i < intInput; i++) {
+
+			cout << "Select the character you want to play :\n" << endl;
+			intInputCharacter = RangeIntInput(0, starterPackTemp.size());
+
+			group.push_back(starterPackTemp[intInputCharacter]);
+			vector<Character*> starterPackTemp;
+			for (int j = 0; j < starterPack.size(); j++) {
+				if (j != intInputCharacter) {
+					starterPackTemp.push_back(starterPack[j]);
+				}
+			}
+			for (int p = 0; p < starterPackTemp.size(); p++) {
+				cout << " [" << p << "]" << endl;
+				//cout << starterPack[j]->getFirstName() << endl;
+				starterPackTemp[p]->showInfo();
+			}
+			starterPack = starterPackTemp;
+			
+		}
+		system("cls");
+		for (int i = 0; i < group.size(); i++) {
+			cout << " [" << i << "]" << endl;
+			group[i]->showInfo();
+		}
 	}
 
-	groupInv.setInvSize(group.size() * 4); //set inv size (only for the weapons)
-	system("cls");
-	for (int i = 0; i < group.size(); i++) {
-		if (group[i]->getClassName() == "Mage") {
-			groupInv.addWeapon(&w3);
-			continue;
-		}
-		else if (group[i]->getClassName() == "Paladin") {
-			groupInv.addWeapon(&w4);
-			continue;
-		}
-		else if (group[i]->getClassName() == "Warrior") {
-			groupInv.addWeapon(&w2);
-			continue;
-		}
-	}
+
 	groupInv.getItemTab()->addPotion(&po1);
 	groupInv.getItemTab()->addPotion(&po2);
 	groupInv.getItemTab()->addPotion(&po3);
 
 	Battle b1;
-	b1.inBattle(group, ennemies, groupInv);
+	//b1.inBattle(group, ennemies, groupInv);
 
 
 
