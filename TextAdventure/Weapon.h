@@ -11,23 +11,24 @@ class Weapon
 {
 private:
 	string name;
+	string rarity;
 	float damage;
 	float defense;
-	float rarity;
+
 
 public:
 	Weapon();
-	Weapon(string n, float dmg, float dfn, float vRarity);
+	Weapon(string vName, float dmg, float vDefense, string vRarity);
 
 	void SetName(string n);
 	void SetDamage(float dmg);
 	void SetDefense(float dfn);
-	void setRarity(float vRarity);
+	void setRarity(string vRarity);
 
 	string GetName();
 	float GetDamage();
 	float GetDefense();
-	float setRarity();
+	string getRarity();
 
 	void showInfoWeapon();
 };

@@ -1,11 +1,23 @@
 #include "Weapon.h"
 
-Weapon::Weapon():name(""), damage(1), defense(1), rarity(0)
+Weapon::Weapon():name(""), damage(1), defense(1), rarity("Common")
 {
 }
 
-Weapon::Weapon(string n, float dmg, float dfn, float vRarity):name(n), damage(dmg), defense(dfn), rarity(vRarity)
+Weapon::Weapon(string vName, float dmg, float vDefense, string vRarity):name(vName), damage(dmg), defense(vDefense), rarity(vRarity)
 {
+	float multiplier = 1.00f;
+	if (getRarity() == "Rare") {
+		multiplier = 1.25f;
+	}
+	if (getRarity() == "Epic") {
+		multiplier = 1.50f;
+	}
+	if (getRarity() == "Legendary") {
+		multiplier = 1.75f;
+	}
+	SetDamage(GetDamage() * multiplier);
+	SetDefense(GetDefense() * multiplier);
 }
 
 void Weapon::SetName(string n)
@@ -23,7 +35,7 @@ void Weapon::SetDefense(float dfn)
 	defense = dfn;
 }
 
-void Weapon::setRarity(float vRarity)
+void Weapon::setRarity(string vRarity)
 {
 	rarity = vRarity;
 }
@@ -34,14 +46,14 @@ float Weapon::GetDamage() {return damage;}
 
 float Weapon::GetDefense() {return defense;}
 
-float Weapon::setRarity()
+string Weapon::getRarity()
 {
 	return rarity;
 }
 
 void Weapon::showInfoWeapon()
 {
-	cout << "\tName : " << GetName() << "\tDamage : " << GetDamage() << endl;
-
-
+	cout << "\tName : " << GetName() << endl;
+	cout << "\tDamage : " << GetDamage() << "\tDefense : " << GetDefense() << endl;
+	cout << "\tRarity : " << getRarity() << endl;
 }
