@@ -58,7 +58,8 @@ int main() {
 	starterPack.push_back(&c4);
 
 
-	SpellHeal s1("Soin faible", 150.0f, 2000.0f);
+	SpellHeal s1("Soin fort", 150.0f, 2000.0f);
+	SpellHeal s2("Soin faible", 20.0f, 20.0f);
 	Potion po1("Speed Potion", 2, false, 0, false, 0, true, 2);
 	Potion po2("Health Potion", 1, false, 0, true, 5, false, 0);
 	Potion po3("Strength Potion", 3, true, 2, false, 0, false, 0);
@@ -68,6 +69,7 @@ int main() {
 	Item groupItem;
 	groupInv.setItemTab(&groupItem); //bind les Item à l'inv de group
 
+	vector<Character> temp;
 	vector<Character*> group;
 	vector<Character*> ennemies;
 	ennemies.push_back(&c1);
@@ -165,8 +167,6 @@ int main() {
 		cout << "\nHow many character do you want to create (1 min - 4 max) :\n";
 		intInput = RangeIntInput(1, 4);
 
-		vector<Character> temp;
-
 		for (int i = 0; i < intInput; i++) {
 			Character newCharacter;
 			temp.push_back(newCharacter);
@@ -181,17 +181,20 @@ int main() {
 			if (group[i]->getClassName() == "Mage") {
 				//groupInv.addWeapon(&w3);
 				group[i]->setActualWeapon(&w3);
+				group[i]->spells.push_back(&s1);
+				group[i]->spells.push_back(&s2);
 				continue;
 			}
 			else if (group[i]->getClassName() == "Paladin") {
 				//groupInv.addWeapon(&w4);
-
+				group[i]->spells.push_back(&s2);
 				group[i]->setActualWeapon(&w4);
 				continue;
 			}
 			else if (group[i]->getClassName() == "Warrior") {
 				//groupInv.addWeapon(&w2);
 				group[i]->setActualWeapon(&w2);
+				group[i]->spells.push_back(nullptr);
 				continue;
 			}
 		}
@@ -269,49 +272,10 @@ int main() {
 	groupInv.getItemTab()->addPotion(&po2);
 	groupInv.getItemTab()->addPotion(&po3);
 
-
-
-	cout << "erreur deb" << endl;
-	cout << group[0]->getFirstName() << endl;
-	cout << group[0]->getActualWeapon()->GetDefense() << endl;
-	cout << "erreur fin" << endl;
-	system("pause");
 	Battle b1;
 	b1.inBattle(group, ennemies, groupInv);
 
 
-
-
-	/*Spell s;
-	s.setNameSpell("SOIN");
-	SpellHeal sHeal(&s,12);
-	SpellHeal s1(&s, 12);
-
-
-
-	Person p1("Jinx", "Piltover");
-
-	Character c2;
-
-	Character c1(&p1,"Marksman",28.0, 58.0);
-	c1.showInfo();
-	c1.castSpell(s1, c1); // j'ai pas pointeur
-
-	c1.showInfo();
-
-	Person p1("Jinx", "Piltover");
-	Character c1(&p1, "Marksman", 28.0, 58.0);
-
-
-	Inventory i;
-	c1.setInvChar(&i);
-
-	i.addWeapon(&w1);
-	i.addWeapon(&w2);
-	i.addWeapon(&w3);
-	i.addWeapon(&w4);
-	i.addWeapon(&w5);
-	c1.getInvChar().equipWeapon();*/
 
 
 

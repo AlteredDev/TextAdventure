@@ -41,12 +41,9 @@ bool Battle::inBattle(vector<Character*> allie, vector<Character*> ennemie, Inve
 
 				cout << "It is " << battleCharactersTab[i]->getFirstName() << " " << battleCharactersTab[i]->getLastName() << "'s turn\tHP = " << battleCharactersTab[i]->getHP() << "/" << battleCharactersTab[i]->getHPMax() << endl;
 				cout << "\t\tMana = " << battleCharactersTab[i]->getMana() << "/" << battleCharactersTab[i]->getManaMax() << endl;
-				cout << "weapon : " << battleCharactersTab[i]->getActualWeapon()->GetName() << endl;
 				//boucler a partir d'ici (faire une autre fonction recursive jusqu'a que allie.dead ou ennemie.dead
 				if (battleCharactersTab[i]->getIsPNJ()) {
-					cout << "DEBUG IF" << endl;
 					for (int a = 0; a < allie.size(); a++) {
-						cout << "DEBUG FOR" << endl;
 						if (allie[a] == nullptr) { continue; }
 						battleCharactersTab[i]->attack(allie[a]);
 						cout << endl;
@@ -69,8 +66,6 @@ bool Battle::inBattle(vector<Character*> allie, vector<Character*> ennemie, Inve
 								cout << ennemie[a]->getFirstName() << " " << ennemie[a]->getLastName() << " [" << a << "]" << endl;
 							}
 							intInput = rangeIntInput(0, ennemie.size());
-							cout << "weapon : " << battleCharactersTab[i]->getActualWeapon()->GetName() << endl;
-							cout << "cible : " << ennemie[intInput]->getFirstName() << endl;
 							battleCharactersTab[i]->attack(ennemie[intInput]);
 							hadAction = true;
 							break;
@@ -180,6 +175,7 @@ bool Battle::inBattle(vector<Character*> allie, vector<Character*> ennemie, Inve
 				bool victoryAllie = false;
 				for (Character* c : allie) {
 					if (c->getIsDead()) {
+						cout << endl << c->getFirstName() << " " << c->getLastName() << " is dead";
 						verifyAllie++;
 						if (verifyAllie == nbrAllie) { break; }
 					}
@@ -190,6 +186,7 @@ bool Battle::inBattle(vector<Character*> allie, vector<Character*> ennemie, Inve
 				bool victoryEnnemie = false;
 				for (Character* c : ennemie) {
 					if (c->getIsDead()) {
+						cout << endl << c->getFirstName() << " " << c->getLastName() << " is dead";
 						verifyEnnemie++;
 						if (verifyEnnemie == nbrEnnemie) { break; }
 					}

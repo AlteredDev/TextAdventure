@@ -345,6 +345,7 @@ void Character::attack(Character *c)
 			dmg -= c->getActualWeapon()->GetDefense();
 		}
 		c->setHP(c->getHP() - dmg);
+		cout << getFirstName() << " " << getLastName() << " dealt " << dmg << " damage to " << c->getFirstName() << " " << c->getLastName() << "." << endl;
 		if (c->getHP() <= 0) {
 			c->die();
 		}
@@ -352,6 +353,7 @@ void Character::attack(Character *c)
 	else {
 		cout << getFirstName() << " " << getLastName() << " failed the attack on " << c->getFirstName() << " " << c->getLastName() << "." << endl;
 	}
+	system("pause");
 
 }
 
@@ -374,6 +376,7 @@ void Character::die()
 {
 	cout << getFirstName() << " " << getLastName() << " is dead." << endl;
 	setIsDead(true);
+	system("pause");
 }
 
 bool Character::verifyManaForSpell(Spell *s)
