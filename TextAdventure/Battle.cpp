@@ -12,9 +12,9 @@ int rangeIntInput(int min, int max) {
 
 //Faire une methode inBattle() qui se boucle tant que des gens sont pas morts sinon ca va etre insanement long
 
-bool Battle::inBattle(vector<Character *> allie, vector<Character *> ennemie, Inventory inv)
+bool Battle::inBattle(vector<Character*> allie, vector<Character*> ennemie, Inventory inv)
 {
-	vector<Character *> battleCharactersTab;
+	vector<Character*> battleCharactersTab;
 	int nbrAllie = 0;
 	int nbrEnnemie = 0;
 
@@ -34,8 +34,8 @@ bool Battle::inBattle(vector<Character *> allie, vector<Character *> ennemie, In
 
 		for (int i = 0; i < battleCharactersTab.size(); i++) {
 			system("cls");
-			cout << "---------------------------------------------------------------------------------\n\n";
-			cout << battleCharactersTab[i]->getFirstName() << " " << battleCharactersTab[i]->getLastName() << "with :" << battleCharactersTab[i]->getInitiative() << " is playing." << endl;
+			cout << "---------------------------------------------------------------------------------\n";
+			cout << "It is " << battleCharactersTab[i]->getFirstName() << " " << battleCharactersTab[i]->getLastName() << "'s turn\tHP = " << battleCharactersTab[i]->getHP() << "/" << battleCharactersTab[i]->getHPMax() << endl;
 
 			if (battleCharactersTab[i] != nullptr) {
 
@@ -46,76 +46,78 @@ bool Battle::inBattle(vector<Character *> allie, vector<Character *> ennemie, In
 							battleCharactersTab[i]->attack(*c);
 						}
 					}
+					system("pause");
 				}
 				else {
-					cout << "What do you want to do :" << endl;
+					cout << "\n\n\nWhat do you want to do :\n\n";
 					cout << "[1] Attack" << endl;
 					cout << "[2] Defend" << endl;
 					cout << "[3] Cast a spell" << endl;
 					cout << "[4] Show your inventory" << endl;
-				}
-				int intInput = rangeIntInput(1, 4);
 
-				switch (intInput) {
-				case 1:
-					cout << "\nWho would you want to attack :\n\n";
-					//je pense faut rajouter un ID pour la selection du perso a attaquer
-					for (int a = 0; a < ennemie.size(); a++) {
-						cout << ennemie[a]->getFirstName() << " " << ennemie[a]->getLastName() << " (" << a << ")" << endl;
-					}
-					intInput = rangeIntInput(0, ennemie.size());
-					battleCharactersTab[i]->attack(*ennemie[intInput]);
-					break;
+					int intInput = rangeIntInput(1, 4);
 
-				case 2:
-					battleCharactersTab[i]->defend();
-					break;
-
-				case 3:
-					if (battleCharactersTab[i]->spells[0] == nullptr) {
-						cout << battleCharactersTab[i]->getFirstName() << " " << battleCharactersTab[i]->getLastName() << "\n do not have any spells...\n";
-						system("pause"); break;
-					}
-					else {
-						cout << "\nWhat spell do you want to cast :\n\n";
-						for (int a = 0; a < battleCharactersTab[i]->spells.size(); a++) {
-							cout << battleCharactersTab[i]->spells[a]->getNameSpell() << " (" << a << ")\n";
+					switch (intInput) {
+					case 1:
+						cout << "\nWho would you want to attack :\n\n";
+						//je pense faut rajouter un ID pour la selection du perso a attaquer
+						for (int a = 0; a < ennemie.size(); a++) {
+							cout << ennemie[a]->getFirstName() << " " << ennemie[a]->getLastName() << " (" << a << ")" << endl;
 						}
-						int spellSelect = rangeIntInput(0, battleCharactersTab[i]->spells.size());
+						intInput = rangeIntInput(0, ennemie.size());
+						battleCharactersTab[i]->attack(*ennemie[intInput]);
+						break;
 
-						cout << "\nSelect the aimed character :\n\n";
-						for (int a = 0; a < battleCharactersTab.size(); a++) {
-							cout << battleCharactersTab[a]->getFirstName() << " " << battleCharactersTab[a]->getLastName() << " (" << a << ")\n";
+					case 2:
+						battleCharactersTab[i]->defend();
+						break;
+
+					case 3:
+						if (battleCharactersTab[i]->spells[0] == nullptr) {
+							cout << battleCharactersTab[i]->getFirstName() << " " << battleCharactersTab[i]->getLastName() << "\n do not have any spells...\n";
+							system("pause"); break;
 						}
-						int charSelect = rangeIntInput(0, battleCharactersTab.size());
+						else {
+							cout << "\nWhat spell do you want to cast :\n\n";
+							for (int a = 0; a < battleCharactersTab[i]->spells.size(); a++) {
+								cout << battleCharactersTab[i]->spells[a]->getNameSpell() << " (" << a << ")\n";
+							}
+							int spellSelect = rangeIntInput(0, battleCharactersTab[i]->spells.size());
 
-						battleCharactersTab[i]->spells[spellSelect]->castSpell(battleCharactersTab[charSelect]);
-					}
-					break;
+							cout << "\nSelect the aimed character :\n\n";
+							for (int a = 0; a < battleCharactersTab.size(); a++) {
+								cout << battleCharactersTab[a]->getFirstName() << " " << battleCharactersTab[a]->getLastName() << " (" << a << ")\n";
+							}
+							int charSelect = rangeIntInput(0, battleCharactersTab.size());
 
-				case 4:
-					system("cls");
-					cout << "\nWeapon :\n\n";
-					for (int i = 0; i < inv.getWeaponTab().size(); i++) {
-						if (inv.getWeaponTab()[i] == nullptr) { break; }
-						cout << "\t" << inv.getWeaponTab()[i]->GetName() << endl;
-					}
+							battleCharactersTab[i]->spells[spellSelect]->castSpell(battleCharactersTab[charSelect]);
+						}
+						break;
 
-					cout << "\n\nItems :\n\n";
-					for (int i = 0; i < inv.getItemTab()->getPotionTab().size(); i++) {
-						if (inv.getItemTab()->getPotionTab()[i] == nullptr) { continue; }
-						cout << "\t" << inv.getItemTab()->getPotionTab()[i]->getName() << endl;
-					}
+					case 4:
+						system("cls");
+						cout << "\nWeapon :\n\n";
+						for (int i = 0; i < inv.getWeaponTab().size(); i++) {
+							if (inv.getWeaponTab()[i] == nullptr) { break; }
+							cout << "\t" << inv.getWeaponTab()[i]->GetName() << endl;
+						}
 
-					cout << "\n\nEquipment :\n\n";
-					if (battleCharactersTab[i]->getActualWeapon() != nullptr) {
-						cout << "\t" << battleCharactersTab[i]->getFirstName() << " " << battleCharactersTab[i]->getLastName() << " is equipped with a " << battleCharactersTab[i]->getActualWeapon()->GetName() << endl;
+						cout << "\n\nItems :\n\n";
+						for (int i = 0; i < inv.getItemTab()->getPotionTab().size(); i++) {
+							if (inv.getItemTab()->getPotionTab()[i] == nullptr) { continue; }
+							cout << "\t" << inv.getItemTab()->getPotionTab()[i]->getName() << endl;
+						}
+
+						cout << "\n\nEquipment :\n\n";
+						if (battleCharactersTab[i]->getActualWeapon() != nullptr) {
+							cout << "\t" << battleCharactersTab[i]->getFirstName() << " " << battleCharactersTab[i]->getLastName() << " is equipped with a " << battleCharactersTab[i]->getActualWeapon()->GetName() << endl;
+						}
+						else {
+							cout << "\t" << battleCharactersTab[i]->getFirstName() << " " << battleCharactersTab[i]->getLastName() << " is unequipped" << endl;
+						}
+						cout << endl; system("pause");
+						break;
 					}
-					else {
-						cout << "\t" << battleCharactersTab[i]->getFirstName() << " " << battleCharactersTab[i]->getLastName() << " is unequipped" << endl;
-					}
-					cout << endl; system("pause");
-					break;
 				}
 
 

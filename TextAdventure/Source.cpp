@@ -1,6 +1,5 @@
-#include "Character.h"
+#include "Battle.h"
 
-/*
 int RangeIntInput(int min, int max) {
 	int input; cin >> input;
 	while (cin.fail() || input < min || input > max) {
@@ -11,7 +10,7 @@ int RangeIntInput(int min, int max) {
 	return input;
 }
 
-void showGroupInv(Inventory inv, vector<Character> group) {
+void showGroupInv(Inventory inv, vector<Character*> group) {
 	system("cls");
 
 	cout << "\nWeapon :\n\n";
@@ -28,25 +27,22 @@ void showGroupInv(Inventory inv, vector<Character> group) {
 
 	cout << "\n\nEquipment :\n\n";
 	for (int i = 0; i < group.size(); i++) {
-		if (group[i].getActualWeapon() != nullptr) {
-			cout << "\t" << group[i].getFirstName() << " " << group[i].getLastName() << " is equipped with a " << group[i].getActualWeapon()->GetName() << endl;
+		if (group[i]->getActualWeapon() != nullptr) {
+			cout << "\t" << group[i]->getFirstName() << " " << group[i]->getLastName() << " is equipped with a " << group[i]->getActualWeapon()->GetName() << endl;
 		}
 		else {
-			cout << "\t" << group[i].getFirstName() << " " << group[i].getLastName() << " is unequipped" << endl;
+			cout << "\t" << group[i]->getFirstName() << " " << group[i]->getLastName() << " is unequipped" << endl;
 		}
 	}
 	cout << endl; system("pause");
 }
 
-*/
 
 int main() {
 
-	Character c1(&Person("Jinx","Piltover"),"Paladin",100,100);
-	Character c2(&Person("Patrick", "Oui"), "Paladin", 25, 100);
-	c1.setInitiative(10);
+	Character c1(&Person("Jinx","Piltover", 10),"Paladin",100,100);
+	Character c2(&Person("Patrick", "Oui", 5), "Paladin", 25, 100);
 	c1.setMana(12.0f);
-	c2.setInitiative(5);
 	c2.setMana(12.0f);
 
 	SpellHeal s1("SOIN",0.2f,25);
@@ -64,9 +60,6 @@ int main() {
 	c2.spells[0]->castSpell(&c1);
 	cout << c2.getInitiative() << endl;
 	
-	return 0;
-	
-	/*
 
 	Weapon w1("Wood Shield", 1, 10, 20);
 	Weapon w2("Wood Sword", 20, 0, 10);
@@ -78,12 +71,12 @@ int main() {
 	Potion po2("Health Potion", 1, false, 0, true, 5, false, 0);
 	Potion po3("Strength Potion", 3, true, 2, false, 0, false, 0);
 
-	vector<Character> group;
+	vector<Character*> group;
 	Inventory groupInv;
 	Item groupItem;
 	groupInv.setItemTab(&groupItem); //bind les Item à l'inv de group
 
-	vector<Character> ennemies;
+	vector<Character*> ennemies;
 
 	int intInput;
 
@@ -96,25 +89,30 @@ int main() {
 	intInput = RangeIntInput(1, 4);
 
 
+	vector<Character> temp;
+
 	for (int i = 0; i < intInput; i++) {
 		system("cls");
 		Character newCharacter;
-		group.push_back(newCharacter); //inserting the character
-		group[i].createCharacter(); //creation du perso
-		group[i].setInvChar(&groupInv); //bind l'inv du perso à celui du group
+		temp.push_back(newCharacter);
+		temp[i].createCharacter();
+		temp[i].setInvChar(&groupInv);
+		group.push_back(&temp[i]);
 	}
+
 	groupInv.setInvSize(group.size() * 4); //set inv size (only for the weapons)
 	system("cls");
 	for (int i = 0; i < group.size(); i++) {
-		if (group[i].getClassName() == "Mage") {
+		system("pause");
+		if (group[i]->getClassName() == "Mage") {
 			groupInv.addWeapon(&w3);
 			continue;
 		}
-		else if (group[i].getClassName() == "Paladin") {
+		else if (group[i]->getClassName() == "Paladin") {
 			groupInv.addWeapon(&w4);
 			continue;
 		}
-		else if (group[i].getClassName() == "Warrior") {
+		else if (group[i]->getClassName() == "Warrior") {
 			groupInv.addWeapon(&w2);
 			continue;
 		}
@@ -126,11 +124,13 @@ int main() {
 	groupInv.getItemTab()->addPotion(&po3);
 
 	for (int i = 0; i < group.size(); i++) {
-		group[i].equipWeapon(&groupInv);
+		group[i]->equipWeapon(&groupInv);
 	}
 
-
 	showGroupInv(groupInv, group);
+
+	Battle b1;
+	b1.inBattle(group, ennemies, groupInv);
 
 
 
@@ -168,6 +168,6 @@ int main() {
 
 
 
-	//return 0;
+	return 0;
 }
 
