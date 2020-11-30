@@ -9,12 +9,15 @@ Weapon* Inventory::equipWeapon()
 	for (i = 0; i < invSize; i++) {
 		if (weaponTab[i] == nullptr) {
 			if (i == 0) {
-				cout << "\tAucune arme possédé";
+				cout << "\tNo weapon possessed";
 				possede = false;
 			}
 			break;
 		}
-		else { cout  << weaponTab[i]->GetName() << " (" << i << ")\n"; }
+		else { 
+			cout  << " [" << i << "]\n";
+			weaponTab[i]->showInfoWeapon();
+		}
 	}
 	if (possede) {
 		cout << "\nChoose your weapon :\n";
