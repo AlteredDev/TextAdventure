@@ -103,7 +103,6 @@ int main() {
 	groupInv.setInvSize(group.size() * 4); //set inv size (only for the weapons)
 	system("cls");
 	for (int i = 0; i < group.size(); i++) {
-		system("pause");
 		if (group[i]->getClassName() == "Mage") {
 			groupInv.addWeapon(&w3);
 			continue;

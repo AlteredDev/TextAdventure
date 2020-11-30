@@ -49,11 +49,7 @@ bool Battle::inBattle(vector<Character*> allie, vector<Character*> ennemie, Inve
 					system("pause");
 				}
 				else {
-					cout << "\n\n\nWhat do you want to do :\n\n";
-					cout << "[1] Attack" << endl;
-					cout << "[2] Defend" << endl;
-					cout << "[3] Cast a spell" << endl;
-					cout << "[4] Show your inventory" << endl;
+					cout << "\n\n\nWhat do you want to do :\n\n[1] Attack\n[2] Defend\n[3] Cast a spell\n[4] Show your inventory\n\n---------------------------------------------------------------------------------\n";
 
 					int intInput = rangeIntInput(1, 4);
 

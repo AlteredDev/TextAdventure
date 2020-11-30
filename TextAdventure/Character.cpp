@@ -310,7 +310,8 @@ void Character::createCharacter()
 		break;
 	}
 
-	cout << "\nYou will therefore be " << getFirstName() << " " << getLastName() << ", " << getAge() << " years old, a " << className <<".";
+	cout << "\n\nYou will therefore be " << getFirstName() << " " << getLastName() << ", " << getAge() << " years old, a " << className <<".\n";
+	system("pause");
 }
 
 /*
