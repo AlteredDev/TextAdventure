@@ -351,7 +351,7 @@ void Character::attack(Character *c)
 		}
 	}
 	else {
-		cout << getFirstName() << " " << getLastName() << " failed the attack on " << c->getFirstName() << " " << c->getLastName() << "." << endl;
+		cout << getFirstName() << " " << getLastName() << " failed the attack on " << c->getFirstName() << " " << c->getLastName() << ".\n\n";
 	}
 	system("pause");
 

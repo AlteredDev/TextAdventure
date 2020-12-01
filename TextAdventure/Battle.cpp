@@ -50,7 +50,6 @@ bool Battle::inBattle(vector<Character*> allie, vector<Character*> ennemie, Inve
 						cout << endl;
 						break;
 					}
-					system("pause");
 				}
 				else {
 					bool hadAction = false;

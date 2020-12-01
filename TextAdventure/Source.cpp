@@ -248,115 +248,116 @@ int main() {
 	//Histoire bateau, juste pour plein de tests --> BETA
 
 	if (group.size() > 1) {
-		cout << "Votre histoire débute alors que votre équipe et vous même vous réveillez dans une fôret inconnue, aucun de vous n'avez de souvenir de ce qui s'est passé..." << endl;
+		cout << "Your story begin as you and your team wake up in an unknown forest, no one of you know what happened..." << endl;
 	}
 	else {
-		cout << "Votre histoire débute alors que vous vous réveillez seul dans une fôret inconnue, vous n'avez de souvenir de ce qui s'est passé..." << endl;
+		cout << "Your story begin as you wake alone in an unknown forest, you don't know what happened..." << endl;
 	}
 
-	cout << "Vous regardez autour de vous et appercevez deux sentiers allant chacun à l'opposé..." << endl;
-	cout << "Quel chemin souhaitez vous emprunter ? [Left] | [Right]" << endl;
+	cout << "You look around you and see two trails going to opposite directions..." << endl;
+	cout << "Which path would you want to take ? [Left] | [Right]" << endl;
 	answer = rangeStringInput("LEFT", "RIGHT");
 
 	if (answer == "LEFT") {
-		cout << "Après une matinée de marche, vous appercevez un inconnu à la capuche sombre près d'un panneau aux indications effacés, celui-ci vous fait des signes discrets vous demandant de le rejoindre." << endl;
-		cout << "Souhaitez vous rejoindre le mystérieux personnage ? [Oui] | [Non]" << endl;
-		answer = rangeStringInput("OUI", "NON");
+		cout << "After a morning of walking, you see a stranger with a dark hood near a sign with erased indications. He makes discreet signs asking you to join him." << endl;
+		cout << "Would you want to approach the mysterious stranger ? [Yes] | [No]" << endl;
+		answer = rangeStringInput("YES", "NO");
 
-		if (answer == "OUI") {
-			cout << "[Mystérieux personnage] - Vous semblez perdu, puis-je vous proposer mon aide afin de vous guider vers un chemin plus sûr ?" << endl;
-			cout << "Son allure semble suspecte mais vous n'avez aucune idée de l'endroit où vous vous trouvez, serait-ce une bonne idée de demander de l'aide ?" << endl;
-			cout << "Souhaitez vous écouter ce mystérieux personnage ? [Oui] | [Non]" << endl;
-			answer = rangeStringInput("OUI", "NON");
+		if (answer == "YES") {
+			cout << "[Mysterious stranger] - You seem lost, can I offer my help to guide you on a safer path? ?" << endl;
+			cout << "It looks suspicious but you have no idea where you are, would it be a good idea to ask for help ?" << endl;
+			cout << "Would you want to listen the mysterious stranger ? [Yes] | [No]" << endl;
+			answer = rangeStringInput("YES", "NO");
 
-			if (answer == "NON") {
-				cout << "Vous continuez de marcher indéfiniement jusqu'à trouver une sortie.... Que vous ne trouverez jamais." << endl;
+			if (answer == "NO") {
+				cout << "You continue walking indefinitely until you find an exit.... Which you will never find." << endl;
 				system("pause");
 				main();
 			}
-			if (answer == "OUI") {
-				cout << "[Mystérieux personnage] - Biennnnn, je vois que vous avez de belles potions, laissez moi en prendre une et je vous guiderez" << endl;
-				cout << "Ces potions peuvent être utile mais sont-elles vraiment nécessaires ?" << endl;
-				cout << "Laisser prendre une potion ? [Oui] | [Non]" << endl;
-				answer = rangeStringInput("OUI", "NON");
+			if (answer == "YES") {
+				cout << "[Mysterious stranger] - Greaaaat, I see that you have beautiful potions, let me take one and I will guide you." << endl;
+				cout << "These potions can be useful but are they really necessary ?" << endl;
+				cout << "Let him take a potion ? [Yes] | [No]" << endl;
+				answer = rangeStringInput("YES", "NO");
 
-				if (answer == "NON") {
+				if (answer == "NO") {
 					if (group.size() > 2) {
-						cout << "[Mystérieux personnage] - Et bien vous trouverez la sortie par vous même je suppose...." << endl;
-						cout << "Vous continuez de marcher indéfiniement jusqu'à trouver une sortie.... Que vous ne trouverez jamais." << endl;
+						cout << "[Mysterious stranger] - Well you'll find the exit by yourself I guess...." << endl;
+						cout << "You continue walking indefinitely until you find an exit.... Which you will never find." << endl;
 						system("pause");
 						main();
 					}
 					else {
-						cout << "[Mystérieux personnage] - Je ne voulais pas en arriver là mais les temps sont durs frere" << endl;
-						cout << "Vous rentrez en combat contre le mystérieux personnage" << endl;
+						cout << "[Mysterious stranger] - I didn't want it to come to this, but times are rough, bro." << endl;
+						cout << "You go into battle against the mysterious stranger." << endl;
+						system("pause");
 						ennemy1.setActualWeapon(&w9);
 						ennemies.push_back(&ennemy1);
 						if (!b1.inBattle(group, ennemies, groupInv)) {
 							main();
 						}
 						else {
-							cout << "Vous avez vaincu le mystérieux personnage mais vous restez sans indication pour trouver la sortie..." << endl;
-							cout << "Vous continuez de marcher indéfiniement jusqu'à trouver une sortie.... Que vous ne trouverez jamais." << endl;
+							cout << "You have defeated the mysterious stranger but you have no indication to find the way out...." << endl;
+							cout << "You continue walking indefinitely until you find an exit.... Which you will never find." << endl;
 							system("pause");
 							main();
 						}
 					}
 				}
 
-				if (answer == "OUI") {
+				if (answer == "YES") {
 					groupInv.getItemTab()->getPotionTab().pop_back();
-					cout << "[Mystérieux personnage] - Merci." << endl;
-					cout << "Le mstérieux personnage lance une potion par terre et disparaît" << endl;
-					cout << "[" << group[0]->getFirstName() << " " << group[0]->getLastName() << "] - Hey ! Et mince, je n'aurais pas du faire confiance à cette personne !" << endl;
-					cout << "Vous continuez de marcher indéfiniement jusqu'à trouver une sortie.... Que vous ne trouverez jamais." << endl;
+					cout << "[Mysterious stranger] - Thank you." << endl;
+					cout << "The mysterious stranger drops a flash bang and dissapear" << endl;
+					cout << "[" << group[0]->getFirstName() << " " << group[0]->getLastName() << "] - Hey ! Shoot, I shouldn't have trusted this guy !" << endl;
+					cout << "You continue walking indefinitely until you find an exit.... Which you will never find." << endl;
 					system("pause");
 					main();
 				}
 			}
 
 		}
-		if (answer == "NON") {
-			cout << "Vous continuez de marcher indéfiniement jusqu'à trouver une sortie.... Que vous ne trouverez jamais." << endl;
+		if (answer == "NO") {
+			cout << "You continue walking indefinitely until you find an exit.... Which you will never find." << endl;
 			system("pause");
 			main();
 		}
 
 	}
 	if (answer == "RIGHT") {
-		cout << "A la fin du sentier, vous vous retrouvez devant une caverne." << endl;
-		cout << "Souhaitez vous entrer dans la caverne ? [Oui] | [Non]" << endl;
-		answer = rangeStringInput("OUI", "NON");
+		cout << "At the end of the trail, you find yourself in front of a cave." << endl;
+		cout << "Would you like to enter the cave ? [Yes] | [No]" << endl;
+		answer = rangeStringInput("YES", "NO");
 
-		if (answer == "OUI") {
-			cout << "Sur un pied d'estale, vous voyez un coffre." << endl;
-			cout << "Souhaitez vous ouvrir le coffre ? [Oui] | [Non]" << endl;
-			answer = rangeStringInput("OUI", "NON");
+		if (answer == "YES") {
+			cout << "On a pedestal, you see a chest." << endl;
+			cout << "Do you want to open the chest ? [Yes] | [No]" << endl;
+			answer = rangeStringInput("YES", "NO");
 
-			if (answer == "OUI") {
-				cout << "Alors que vous êtes en train d'ouvrir le coffre, vous vous appercevez que ce n'est pas un vrai coffre mais un Mimique !" << endl;
+			if (answer == "YES") {
+				cout << "While you are opening the chest, you realize that it is not a real safe but a Mimic !" << endl;
 				ennemy2.setActualWeapon(&w8);
 				ennemies.push_back(&ennemy2);
 				if (!b1.inBattle(group, ennemies, groupInv)) {
 					main();
 				}
 				else {
-					cout << "Vous avez vaincu le mimique, vous trouvez 1 potion de speed" << endl;
+					cout << "You have defeated the mimic, you find 1 potion of speed." << endl;
 					groupInv.getItemTab()->addPotion(&po1);
-					cout << "Vous vous retournez et resortez de la caverne et continuez votre aventure" << endl;
+					cout << "You turn around and come out of the cave and continue your adventure." << endl;
 					system("pause");
 					main();
 				}
 			}
-			if (answer == "NON") {
-				cout << "Vous herrez dans la caverne sombre pendant de longues heures, mais ne retrouvez pas votre chemin..." << endl;
+			if (answer == "NO") {
+				cout << "You herd in the dark cave for long hours, but don't find your way back...." << endl;
 				system("pause");
 				main();
 			}
 
 		}
-		if (answer == "NON") {
-			cout << "Vous continuez de marcher indéfiniement jusqu'à trouver une sortie.... Que vous ne trouverez jamais." << endl;
+		if (answer == "NO") {
+			cout << "You continue walking indefinitely until you find an exit.... Which you will never find." << endl;
 			system("pause");
 			main();
 		}
