@@ -39,8 +39,9 @@ bool Battle::inBattle(vector<Character*> allie, vector<Character*> ennemie, Inve
 			if (battleCharactersTab[i] != nullptr) {
 				battleCharactersTab[i]->verifyPotion();
 
-				cout << "It is " << battleCharactersTab[i]->getFirstName() << " " << battleCharactersTab[i]->getLastName() << "'s turn\tHP = " << battleCharactersTab[i]->getHP() << "/" << battleCharactersTab[i]->getHPMax() << endl;
-				cout << "\t\tMana = " << battleCharactersTab[i]->getMana() << "/" << battleCharactersTab[i]->getManaMax() << endl;
+				cout << "It is " << battleCharactersTab[i]->getFirstName() << " " << battleCharactersTab[i]->getLastName() << "'s turn." << endl;
+				cout << "\tHP = " << battleCharactersTab[i]->getHP() << " / " << battleCharactersTab[i]->getHPMax() << endl;
+				cout << "\tMana = " << battleCharactersTab[i]->getMana() << "/" << battleCharactersTab[i]->getManaMax() << endl;
 				//boucler a partir d'ici (faire une autre fonction recursive jusqu'a que allie.dead ou ennemie.dead
 				if (battleCharactersTab[i]->getIsPNJ()) {
 					for (int a = 0; a < allie.size(); a++) {
@@ -60,7 +61,7 @@ bool Battle::inBattle(vector<Character*> allie, vector<Character*> ennemie, Inve
 
 						switch (intInput) {
 						case 1:
-							cout << "\nWho would you want to attack :\n\n";
+							cout << "\nWho would you want to attack :\n";
 							//je pense faut rajouter un ID pour la selection du perso a attaquer
 							for (int a = 0; a < ennemie.size(); a++) {
 								cout << ennemie[a]->getFirstName() << " " << ennemie[a]->getLastName() << " [" << a << "]" << endl;

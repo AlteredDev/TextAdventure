@@ -281,38 +281,38 @@ void Character::createCharacter()
 	case 1:
 		setClassName("Mage");
 		setStrength(15.0f);
-		setCriticPerc(0.60f);
-		setCriticPercMultiplier(2.0f);
+		setCriticPerc(0.30f);
+		setCriticPercMultiplier(1.9f);
 		setHitPerc(0.80f);
-		setHPMax(150.0f);
+		setHPMax(750.0f);
 		setHP(getHPMax());
-		setManaMax(60.0f);
+		setManaMax(250.0f);
 		setMana(getManaMax());
-		setInitiative(7.0f);
+		setInitiative(14.0f);
 		break;
 	case 2:
 		setClassName("Paladin");
 		setStrength(10.0f);
-		setCriticPerc(0.40f);
+		setCriticPerc(0.15f);
 		setCriticPercMultiplier(1.25f);
-		setHitPerc(0.75f);
-		setHPMax(300.0f);
+		setHitPerc(0.85f);
+		setHPMax(900.0f);
 		setHP(getHPMax());
-		setManaMax(20.0f);
+		setManaMax(125.0f);
 		setMana(getManaMax());
-		setInitiative(13.0f);
+		setInitiative(10.0f);
 		break;
 	case 3:
 		setClassName("Warrior");
 		setStrength(12.0f);
-		setCriticPerc(0.40f);
+		setCriticPerc(0.20f);
 		setCriticPercMultiplier(1.75f);
 		setHitPerc(0.80f);
-		setHPMax(225.0f);
+		setHPMax(855.0f);
 		setHP(getHPMax());
 		setManaMax(0.0f);
 		setMana(getManaMax());
-		setInitiative(10.0f);
+		setInitiative(13.0f);
 		break;
 	}
 
